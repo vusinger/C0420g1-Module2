@@ -5,8 +5,8 @@ public class UngDungDocSoThanhChu {
         Scanner sc = new Scanner(System.in);
         System.out.print("Nhap vao so cua ban(0-999):");
         int numb = sc.nextInt();
-        boolean check = false;
         boolean check1 = true;
+        boolean check2 = true;
         if (numb>999) { numb = -1;}
 //       Doc Hang Tram
         if (numb>=100) {
@@ -43,17 +43,24 @@ public class UngDungDocSoThanhChu {
                     break;
             }
             numb = numb - tram*100;
-            check = true;
-            if ((numb < 10)&&(numb != 0)) { System.out.print("Lẻ "); check = false;}
+            check1 = false;
+            check2 = false;
+            if ((numb < 10)&&(numb != 0)) {
+                    System.out.print("Lẻ ");
+                    check1 = true;
+                    check2 = true;
+            }
             if (numb == 0) {numb = -1;}
         }
 //        Doc hang Chuc
         if (numb>=10) {
             int chuc = numb/10;
+            check1 = false;
+            check2 = false;
             switch (chuc) {
                 case 1:
                     System.out.print("Mười ");
-                    check1 = false;
+                    check1 = true;
                     break;
                 case 2:
                     System.out.print("Hai mươi ");
@@ -83,7 +90,6 @@ public class UngDungDocSoThanhChu {
                     break;
             }
             numb = numb-chuc*10;
-            check = true;
             if (numb == 0) { numb = -1; }
         }
 //        Doc hang don vi
@@ -94,8 +100,8 @@ public class UngDungDocSoThanhChu {
                     System.out.print("Không");
                     break;
                 case 1:
-                    if (check&&check1) {System.out.print("Mốt");} else {
-                        System.out.println("Một");
+                    if (check1) {System.out.print("Một");} else {
+                        System.out.println("Mốt");
                     }
                     break;
                 case 2:
@@ -105,13 +111,11 @@ public class UngDungDocSoThanhChu {
                     System.out.print("Ba");
                     break;
                 case 4:
-                    if (!check&&check1) {System.out.print("Tư");} else {
-                        System.out.println("Bốn");
-                    }
+                    System.out.println("Bốn");
                     break;
                 case 5:
-                    if (check) {System.out.print("Lăm");} else {
-                        System.out.println("Năm");
+                    if (check2) {System.out.print("Năm");} else {
+                        System.out.println("Lăm");
                     }
                     break;
                 case 6:
