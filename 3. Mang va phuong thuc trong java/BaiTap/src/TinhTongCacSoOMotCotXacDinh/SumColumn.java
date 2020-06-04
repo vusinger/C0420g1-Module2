@@ -28,9 +28,10 @@ public class SumColumn {
                 sum += array[i][choice];
             }
             System.out.println("Tong Cot "+choice+":"+sum);
-            System.out.print("Continue? (True/False): ");
-            Boolean choice1 = sc.nextBoolean();
-            if (choice1==false) {
+            System.out.println("Continue? (Yes/No): ");
+            sc.nextLine();
+            String choice1 = sc.nextLine();
+            if (choice1.equals("Yes")) {
                 break;
             }
             System.out.println(Arrays.deepToString(array));
