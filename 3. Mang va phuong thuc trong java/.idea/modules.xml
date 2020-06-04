@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/3. Mang va phuong thuc trong java.iml" filepath="$PROJECT_DIR$/.idea/3. Mang va phuong thuc trong java.iml" />
+      <module fileurl="file://$PROJECT_DIR$/[BaiTap]GopMang/[BaiTap]GopMang.iml" filepath="$PROJECT_DIR$/[BaiTap]GopMang/[BaiTap]GopMang.iml" />
+      <module fileurl="file://$PROJECT_DIR$/[BaiTap]ThemPhanTuVaoMang/[BaiTap]ThemPhanTuVaoMang.iml" filepath="$PROJECT_DIR$/[BaiTap]ThemPhanTuVaoMang/[BaiTap]ThemPhanTuVaoMang.iml" />
+      <module fileurl="file://$PROJECT_DIR$/[BaiTap]TimPhanTuLonNhatTrongMangHaiChieu/[BaiTap]TimPhanTuLonNhatTrongMangHaiChieu.iml" filepath="$PROJECT_DIR$/[BaiTap]TimPhanTuLonNhatTrongMangHaiChieu/[BaiTap]TimPhanTuLonNhatTrongMangHaiChieu.iml" />
+      <module fileurl="file://$PROJECT_DIR$/[BaiTap]XoaPhanTuKhoiMang/[BaiTap]XoaPhanTuKhoiMang.iml" filepath="$PROJECT_DIR$/[BaiTap]XoaPhanTuKhoiMang/[BaiTap]XoaPhanTuKhoiMang.iml" />
+      <module fileurl="file://$PROJECT_DIR$/[ThucHanh]Chuongtrinhchuyendoinhietdo/[ThucHanh]Chuongtrinhchuyendoinhietdo.iml" filepath="$PROJECT_DIR$/[ThucHanh]Chuongtrinhchuyendoinhietdo/[ThucHanh]Chuongtrinhchuyendoinhietdo.iml" />
+      <module fileurl="file://$PROJECT_DIR$/[ThucHanh]DaoNguocPhanTuMang/[ThucHanh]DaoNguocPhanTuMang.iml" filepath="$PROJECT_DIR$/[ThucHanh]DaoNguocPhanTuMang/[ThucHanh]DaoNguocPhanTuMang.iml" />
+      <module fileurl="file://$PROJECT_DIR$/[ThucHanh]TimGiaTriTrongMang/[ThucHanh]TimGiaTriTrongMang.iml" filepath="$PROJECT_DIR$/[ThucHanh]TimGiaTriTrongMang/[ThucHanh]TimGiaTriTrongMang.iml" />
+      <module fileurl="file://$PROJECT_DIR$/[ThucHanh]TimGiaTrinhoNhatTrongMang/[ThucHanh]TimGiaTrinhoNhatTrongMang.iml" filepath="$PROJECT_DIR$/[ThucHanh]TimGiaTrinhoNhatTrongMang/[ThucHanh]TimGiaTrinhoNhatTrongMang.iml" />
+      <module fileurl="file://$PROJECT_DIR$/[ThucHanh]Timgiatrilonnhattrongmang/[ThucHanh]Timgiatrilonnhattrongmang.iml" filepath="$PROJECT_DIR$/[ThucHanh]Timgiatrilonnhattrongmang/[ThucHanh]Timgiatrilonnhattrongmang.iml" />
+    </modules>
+  </component>
+</project>
