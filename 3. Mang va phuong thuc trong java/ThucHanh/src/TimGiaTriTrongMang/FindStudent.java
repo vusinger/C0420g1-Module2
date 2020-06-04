@@ -1,3 +1,5 @@
+package TimGiaTriTrongMang;
+
 import java.util.Scanner;
 
 public class FindStudent {

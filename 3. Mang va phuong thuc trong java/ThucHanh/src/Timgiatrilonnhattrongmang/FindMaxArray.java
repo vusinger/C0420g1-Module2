@@ -1,3 +1,5 @@
+package Timgiatrilonnhattrongmang;
+
 import java.util.Scanner;
 
 public class FindMaxArray {

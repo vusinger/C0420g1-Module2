@@ -1,3 +1,5 @@
+package Chuongtrinhchuyendoinhietdo;
+
 import java.util.Scanner;
 
 public class ChangeTemperature {

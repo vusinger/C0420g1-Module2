@@ -1,3 +1,5 @@
+package DaoNguocPhanTuMang;
+
 public class ReverseArray {
     public static void main(String[] args) {
         int size;
