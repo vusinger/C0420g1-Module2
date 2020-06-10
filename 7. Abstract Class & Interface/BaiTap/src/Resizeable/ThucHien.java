@@ -1,5 +1,10 @@
 package Resizeable;
 
+import Resizeable.ClassShape.Circle;
+import Resizeable.ClassShape.Rectangle;
+import Resizeable.ClassShape.Shape;
+import Resizeable.ClassShape.Square;
+
 public class ThucHien {
     public static void main(String[] args) {
         Shape[] arr = new Shape[3];

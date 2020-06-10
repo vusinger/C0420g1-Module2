@@ -1,6 +1,6 @@
-package Resizeable;
+package Resizeable.ClassShape;
 
-public class Circle extends Shape{
+public class Circle extends Shape {
     private double radius;
     private double size;
 

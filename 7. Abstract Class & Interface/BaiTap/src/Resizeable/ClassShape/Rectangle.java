@@ -1,6 +1,6 @@
-package Resizeable;
+package Resizeable.ClassShape;
 
-public class Rectangle extends Shape{
+public class Rectangle extends Shape {
     private double width;
     private double height;
     private double size;

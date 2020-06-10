@@ -1,4 +1,4 @@
-package Resizeable;
+package Resizeable.ClassShape;
 
 public class Square extends Shape {
     private double side;

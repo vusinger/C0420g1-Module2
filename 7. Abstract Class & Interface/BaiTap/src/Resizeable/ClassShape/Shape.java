@@ -1,4 +1,4 @@
-package Resizeable;
+package Resizeable.ClassShape;
 
 public abstract class Shape implements Resizeable {
     public abstract double getSize();
