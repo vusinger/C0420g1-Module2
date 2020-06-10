@@ -19,28 +19,7 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="343b416c-1ecb-4a75-9fa0-1b2a791e1d36" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Colorable/HamMain.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Colorable/Shape/Circle.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Colorable/Shape/Colorable.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Colorable/Shape/Rectangle.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Colorable/Shape/Shape.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Colorable/Shape/Square.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/BaiTap/Resizeable/Circle.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/BaiTap/Resizeable/Rectangle.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/BaiTap/Resizeable/Resizeable.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/BaiTap/Resizeable/Shape.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/BaiTap/Resizeable/Square.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/BaiTap/Resizeable/ThucHien.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/BaiTap/Resizeable/ThucHien.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Resizeable/Circle.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Resizeable/ClassShape/Circle.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Resizeable/Rectangle.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Resizeable/ClassShape/Rectangle.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Resizeable/Resizeable.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Resizeable/ClassShape/Resizeable.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Resizeable/Shape.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Resizeable/ClassShape/Shape.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Resizeable/Square.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Resizeable/ClassShape/Square.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Resizeable/ThucHien.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Resizeable/ThucHien.java" afterDir="false" />
-    </list>
+    <list default="true" id="343b416c-1ecb-4a75-9fa0-1b2a791e1d36" name="Default Changelist" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -122,6 +101,7 @@
       <workItem from="1591776400876" duration="46000" />
       <workItem from="1591777253443" duration="3319000" />
       <workItem from="1591788816383" duration="2251000" />
+      <workItem from="1591791167684" duration="602000" />
     </task>
     <servers />
   </component>
