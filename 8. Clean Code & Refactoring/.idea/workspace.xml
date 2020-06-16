@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="BranchesTreeState">
+    <expand>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+    </expand>
+    <select />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="9770373d-2103-4b08-96c5-ff4e79c21551" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/../10. DSA_DanhSach/BaiTap/src/TrienKhaiLinkedList/MyLinkedList.java" beforeDir="false" afterPath="$PROJECT_DIR$/../10. DSA_DanhSach/BaiTap/src/trien_khai_linked_list/MyLinkedList.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../10. DSA_DanhSach/BaiTap/src/TrienKhaiLinkedList/TestLinkedList.java" beforeDir="false" afterPath="$PROJECT_DIR$/../10. DSA_DanhSach/BaiTap/src/trien_khai_linked_list/TestLinkedList.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../10. DSA_DanhSach/BaiTap/src/TrienKhaiPhuongThucArrayList/MyArrayList.java" beforeDir="false" afterPath="$PROJECT_DIR$/../10. DSA_DanhSach/BaiTap/src/trien_khai_phuong_thuc_array_list/MyArrayList.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../10. DSA_DanhSach/BaiTap/src/TrienKhaiPhuongThucArrayList/MyListTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/../10. DSA_DanhSach/BaiTap/src/trien_khai_phuong_thuc_array_list/MyListTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../10. DSA_DanhSach/ThucHanh/src/LinkedListDonGian/MyLinkedList.java" beforeDir="false" afterPath="$PROJECT_DIR$/../10. DSA_DanhSach/ThucHanh/src/linked_list_don_gian/MyLinkedList.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../10. DSA_DanhSach/ThucHanh/src/LinkedListDonGian/TestMyLinkedList.java" beforeDir="false" afterPath="$PROJECT_DIR$/../10. DSA_DanhSach/ThucHanh/src/linked_list_don_gian/TestMyLinkedList.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../10. DSA_DanhSach/ThucHanh/src/LopListDonGian/MyListTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/../10. DSA_DanhSach/ThucHanh/src/lop_list_don_gian/MyListTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../11. DSAStackQueue/BaiTap/out/production/BaiTap/META-INF/BaiTap.kotlin_module" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../11. DSAStackQueue/BaiTap/src/ConvertDecimalToBinary/DecimalToBinary.java" beforeDir="false" afterPath="$PROJECT_DIR$/../11. DSAStackQueue/BaiTap/src/convert_decimal_to_binary/DecimalToBinary.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../11. DSAStackQueue/BaiTap/src/CountWordTreeMap/CountWord.java" beforeDir="false" afterPath="$PROJECT_DIR$/../11. DSAStackQueue/BaiTap/src/count_word_tree_map/CountWord.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../11. DSAStackQueue/BaiTap/src/PanlindromeQueue/PanlindromeQueue.java" beforeDir="false" afterPath="$PROJECT_DIR$/../11. DSAStackQueue/BaiTap/src/panlindrome_queue/PanlindromeQueue.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../11. DSAStackQueue/BaiTap/src/StackReverse/StackReverse.java" beforeDir="false" afterPath="$PROJECT_DIR$/../11. DSAStackQueue/BaiTap/src/stack_reverse/StackReverse.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../11. DSAStackQueue/ThucHanh/src/QueueArray/MyQueue.java" beforeDir="false" afterPath="$PROJECT_DIR$/../11. DSAStackQueue/ThucHanh/src/queue_array/MyQueue.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../11. DSAStackQueue/ThucHanh/src/QueueArray/QueueClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/../11. DSAStackQueue/ThucHanh/src/queue_array/QueueClient.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../11. DSAStackQueue/ThucHanh/src/QueueLinkedList/LinkedListQueueClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/../11. DSAStackQueue/ThucHanh/src/queue_linked_list/LinkedListQueueClient.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../11. DSAStackQueue/ThucHanh/src/QueueLinkedList/MyLinkedListQueue.java" beforeDir="false" afterPath="$PROJECT_DIR$/../11. DSAStackQueue/ThucHanh/src/queue_linked_list/MyLinkedListQueue.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../11. DSAStackQueue/ThucHanh/src/StackArray/MyStack.java" beforeDir="false" afterPath="$PROJECT_DIR$/../11. DSAStackQueue/ThucHanh/src/stack_array/MyStack.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../11. DSAStackQueue/ThucHanh/src/StackArray/StackClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/../11. DSAStackQueue/ThucHanh/src/stack_array/StackClient.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../11. DSAStackQueue/ThucHanh/src/StackLinkedList/GenericStackClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/../11. DSAStackQueue/ThucHanh/src/stack_linked_list/GenericStackClient.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../11. DSAStackQueue/ThucHanh/src/StackLinkedList/MyGenericStack.java" beforeDir="false" afterPath="$PROJECT_DIR$/../11. DSAStackQueue/ThucHanh/src/stack_linked_list/MyGenericStack.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BaiTap/BaiTap.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BaiTap/src/TennisGame/TennisGame.java" beforeDir="false" afterPath="$PROJECT_DIR$/BaiTap/src/tennis_game/TennisGame.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ThucHanh/ThucHanh.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ThucHanh/src/Refactoring1/Calculator.java" beforeDir="false" afterPath="$PROJECT_DIR$/ThucHanh/src/refactoring1/Calculator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ThucHanh/src/Refactoring2/FizzBuzz.java" beforeDir="false" afterPath="$PROJECT_DIR$/ThucHanh/src/refactoring2/FizzBuzz.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ThucHanh/src/Refactoring3/Cylinder.java" beforeDir="false" afterPath="$PROJECT_DIR$/ThucHanh/src/refactoring3/Cylinder.java" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="ProjectId" id="1dOuMlDWcpbSOoraDICt4wzve8M" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="aspect.path.notification.shown" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="9770373d-2103-4b08-96c5-ff4e79c21551" name="Default Changelist" comment="" />
+      <created>1592308414637</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1592308414637</updated>
+      <workItem from="1592308415851" duration="38000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="2" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+</project>
