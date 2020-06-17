@@ -1,5 +1,7 @@
 package queue_danh_sach_lien_ket_vong;
 
+import java.lang.reflect.Array;
+
 public class Queue<E> {
     private Node front;
     private Node rear;

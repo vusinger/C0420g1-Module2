@@ -7,7 +7,11 @@ public class Solution {
         // Inserting elements in Circular Queue
         q.enQueue(14);
         q.enQueue(22);
+        q.enQueue(4);
+        q.enQueue(5);
         q.enQueue(6);
+        q.enQueue(7);
+        q.enQueue(8);
 
         // Display elements present in Circular Queue
         q.displayQueue();

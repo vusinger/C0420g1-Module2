@@ -18,10 +18,11 @@ public class CheckBracket {
         while (!stack.isEmpty()) {
             check = stack.lastElement().toString();
             if (check.equals("(")) {
-                count++;
-            } else if (check.equals(")")) {
                 count--;
+            } else if (check.equals(")")) {
+                count++;
             }
+            if (count<0) { break;}
             stack.pop();
         }
         System.out.println("Your Expression is "+(count==0));
