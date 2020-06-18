@@ -43,7 +43,7 @@ public class BinaryTree<E extends Comparable<E>> extends AbstractTree<E> {
         this.root = null;
         this.size = 0;
     }
-
+//  -------------------Add node------------------------------
     @Override
     public boolean add(E e) {
         if (root == null) {
@@ -70,12 +70,13 @@ public class BinaryTree<E extends Comparable<E>> extends AbstractTree<E> {
         this.size++;
         return true;
     }
-
+//  ---------------------get size-------------------------------
     @Override
     public int size() {
         return this.size;
     }
 
+//  --------------------Display Tree---------------------------
     @Override
     public void showPostOrder() {
         postOrder(root);
@@ -95,6 +96,7 @@ public class BinaryTree<E extends Comparable<E>> extends AbstractTree<E> {
             postOrder(root.right);
         }
     }
+//    -----------------Delete-------------------------------
     public void remove(E e) {
         checkRemove(root,e);
     }
@@ -118,4 +120,5 @@ public class BinaryTree<E extends Comparable<E>> extends AbstractTree<E> {
             checkRemove(root.right,e);
         }
     }
+//    -----------------------------------------------
 }
