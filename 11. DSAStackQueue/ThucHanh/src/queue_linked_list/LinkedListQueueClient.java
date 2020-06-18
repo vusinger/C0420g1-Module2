@@ -6,6 +6,7 @@ public class LinkedListQueueClient {
         queue.enqueue(10);
         queue.enqueue(20);
         queue.enqueue(30);
+        System.out.println("Dequeued item is " + queue.dequeue().key);
         queue.enqueue(40);
         queue.enqueue(50);
         System.out.println("Dequeued item is " + queue.dequeue().key);
