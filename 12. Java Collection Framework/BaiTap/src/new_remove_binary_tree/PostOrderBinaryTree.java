@@ -9,7 +9,7 @@ public class PostOrderBinaryTree {
         stringBinaryTree.add("Karik");
         stringBinaryTree.add("Smith");
         stringBinaryTree.add("Micheal");
+        stringBinaryTree.delete("Karik");
         stringBinaryTree.showPostOrder();
-        stringBinaryTree.remove("Karik");
     }
 }

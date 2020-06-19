@@ -97,28 +97,27 @@ public class BinaryTree<E extends Comparable<E>> extends AbstractTree<E> {
         }
     }
 //    -----------------Delete-------------------------------
-    public void remove(E e) {
-        checkRemove(root,e);
+    public void delete(E e) {
+        Node temp = this.root;
+        temp = findRoot(this.root,e);
+        if (temp.left==null||temp.right==null) {
+            temp = temp.left!=null?temp.left:temp.right;
+        }
+
     }
-    private void checkRemove(Node root,E e) {
-        if (root.element.equals(e)) {
-            if (root.left!=null) {
-                removeValue = root.left;
-            } else if (root.right!=null){
-                removeValue = root.right;
-            } else if (root.left==null&&root.right==null) {
-                removeValue = root;
-            }
-        }
+
+    private Node findRoot(Node root,E e) {
         if (root==null) {
-            return;
+            return null;
         }
-        if (root.left!=null) {
-            checkRemove(root.left,e);
+        if(e.compareTo(root.element)<0) {
+            findRoot(root.left,e);
+        } else if(e.compareTo(root.element)>0) {
+            findRoot(root.right,e);
+        } else {
+            return root;
         }
-        if (root.right!=null) {
-            checkRemove(root.right,e);
-        }
+        return null;
     }
 //    -----------------------------------------------
 }
