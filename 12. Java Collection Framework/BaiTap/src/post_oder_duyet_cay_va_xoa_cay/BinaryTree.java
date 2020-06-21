@@ -76,28 +76,25 @@ public class BinaryTree<E extends Comparable<E>> extends AbstractTree<E> {
 
     //-----------------------new add--------------------------------
     public void addNew(E e) {
-        this.root = addNew(root,e,false,root);
+        this.root = addNew(root, e, root);
     }
 
-    private Node addNew(Node rootChild, E e,boolean check,Node rootParent) {
-        if (rootChild==null) {
-            if (!check) {
-                check = true;
-                this.size++;
-                if (rootParent==null) {
-                    rootChild = new Node(e);
-                } else if (e.compareTo(rootParent.element)<0) {
-                    rootParent.left = new Node(e);
-                } else if (e.compareTo(rootParent.element)>0) {
-                    rootParent.right = new Node(e);
-                }
+    private Node addNew(Node rootChild, E e, Node rootParent) {
+        if (rootChild == null) {
+            this.size++;
+            if (rootParent == null) {
+                rootChild = new Node(e);
+            } else if (e.compareTo(rootParent.element) < 0) {
+                rootParent.left = new Node(e);
+            } else if (e.compareTo(rootParent.element) > 0) {
+                rootParent.right = new Node(e);
             }
             return rootChild;
         }
-        if (e.compareTo(rootChild.element)<0) {
-            addNew(rootChild.left,e,check,rootChild);
-        } else if (e.compareTo(rootChild.element)>0) {
-            addNew(rootChild.right,e,check,rootChild);
+        if (e.compareTo(rootChild.element) < 0) {
+            addNew(rootChild.left, e, rootChild);
+        } else if (e.compareTo(rootChild.element) > 0) {
+            addNew(rootChild.right, e, rootChild);
         }
         return rootChild;
     }
@@ -143,9 +140,9 @@ public class BinaryTree<E extends Comparable<E>> extends AbstractTree<E> {
     }
 
     //--------------------------------------------------------------------
-//minNode() will find out the minimum node
     public void delete(E e) {
-        delete(this.root, e);
+        this.root = delete(this.root, e);
+        this.size--;
     }
 
     public Node minNode(Node root) {
@@ -168,7 +165,6 @@ public class BinaryTree<E extends Comparable<E>> extends AbstractTree<E> {
 
                 //If value is equal to node's data that is, we have found the node to be deleted
             else if (e.compareTo(root.element) == 0) {
-                this.size--;
                 //If node to be deleted has no child then, set the node to null
                 if (root.left == null && root.right == null)
                     root = null;
@@ -195,5 +191,79 @@ public class BinaryTree<E extends Comparable<E>> extends AbstractTree<E> {
             }
             return root;
         }
+    }
+
+    //    ----------------------------Delete new-------------------------------------
+    public void deleteNew(E e) {
+        this.root = deleteNew(root, e);
+        this.size--;
+    }
+
+    public Node deleteNew(Node root, E e) {
+        if (root == null) {
+            return null;
+        }
+        if (e.compareTo(root.element) < 0) {
+            root.left = delete(root.left, e);
+        } else if (e.compareTo(root.element) > 0) {
+            root.right = delete(root.right, e);
+        } else {
+            if (root.left == null || root.right == null) {
+                Node temp = root.left != null ? root.left : root.right;
+                return temp;
+            } else {
+                Node successor = getSuccessor(root);
+                root.element = successor.element;
+                root.right = delete(root.right, successor.element);
+            }
+        }
+        return root;
+    }
+
+    public Node getSuccessor(Node node) {
+        if (node == null) {
+            return null;
+        }
+        Node temp = node.right;
+        while (temp.left != null) {
+            temp = temp.left;
+        }
+        return temp;
+    }
+
+    //    -----------------------------------------------------------------------------------
+    public void deleteNode(E key) {
+        if (this.size == 1 && key.compareTo(root.element) == 0) {
+            root = null;
+            this.size--;
+            return;
+        }
+        deleteNode(root, key);
+        this.size--;
+    }
+
+    private Node deleteNode(Node root, E key) {
+        if (root == null) return null;
+        if (key.compareTo(root.element) < 0) {
+            root.left = deleteNode(root.left, key);
+        } else {
+            if (key.compareTo(root.element) > 0) {
+                root.right = deleteNode(root.right, key);
+            } else {
+                //if same
+                if (root.left == null) return root.right;
+                if (root.right == null) return root.left;
+                //otherwise, find min at right subtree
+                Node temp = root.right;
+                while (temp != null) {
+                    if (temp.left == null) break;
+                    temp = temp.left;
+                }
+                E min_at_right = temp.element;
+                root.element = min_at_right;
+                root.right = deleteNode(root.right, min_at_right);
+            }
+        }
+        return root;
     }
 }
