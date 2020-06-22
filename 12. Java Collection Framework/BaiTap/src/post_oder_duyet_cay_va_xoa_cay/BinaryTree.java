@@ -99,7 +99,30 @@ public class BinaryTree<E extends Comparable<E>> extends AbstractTree<E> {
         return rootChild;
     }
 
-    //-------------------------------------------------------
+    //    ------------------Ham Add---------------------
+    public void add1(E e) {
+        if (e != null) {
+            this.root = add1(root, e);
+            this.size++;
+        }
+    }
+
+    private Node add1(Node root, E e) {
+        if (root == null) {
+            return new Node(e);
+        }
+        if (e.compareTo(root.element) < 0) {
+            root.left = add1(root.left, e);
+        } else if (e.compareTo(root.element) > 0) {
+            root.right = add1(root.right, e);
+        } else {
+//            root.element = e;
+            this.size--;
+        }
+        return root;
+    }
+
+    //  -------------------------------------------------------
     @Override
     public int size() {
         return this.size;
@@ -109,14 +132,14 @@ public class BinaryTree<E extends Comparable<E>> extends AbstractTree<E> {
     @Override
     public void showPostOrder() {
         array.clear();
-        postOrder(root, 0,root);
+        postOrder(root, 0, root);
         System.out.println();
         boolean check;
         for (int i = 1; i <= array.size(); i++) {
             check = false;
             for (E obj : array.keySet()) {
                 if (array.get(obj) == i) {
-                    System.out.print(array.get(obj)+"-"+obj+" ");
+                    System.out.print(array.get(obj) + "-" + obj + " ");
                     check = true;
                 }
             }
@@ -124,18 +147,18 @@ public class BinaryTree<E extends Comparable<E>> extends AbstractTree<E> {
         }
     }
 
-    private void postOrder(Node root, int level,Node root1) {
+    private void postOrder(Node root, int level, Node root1) {
         if (root == null) {
             return;
         }
         level++;
         if (root.left != null) {
-            postOrder(root.left, level,root);
+            postOrder(root.left, level, root);
         }
-        System.out.print(level + "-" + root.element + "("+root1.element+") ");
+        System.out.print(level + "-" + root.element + "(" + root1.element + ") ");
         array.put(root.element, level);
         if (root.right != null) {
-            postOrder(root.right, level,root);
+            postOrder(root.right, level, root);
         }
     }
 
