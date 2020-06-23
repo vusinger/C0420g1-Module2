@@ -2,11 +2,11 @@ package cay_nhi_phan;
 
 public class BinaryTreeSearch {
     public static void main(String[] args) {
-        Student a1 = new Student(55,"Huy");
-        Student a2 = new Student(60,"Minh");
-        Student a3 = new Student(45,"Duy");
-        Student a4 = new Student(56,"Duy");
-        Student a5 = new Student(70,"Hoang");
+        Student a1 = new Student(11,"Huy");
+        Student a2 = new Student(25,"Minh");
+        Student a3 = new Student(12,"Duy");
+        Student a4 = new Student(22,"Duy");
+        Student a5 = new Student(64,"Hoang");
         Student a6 = new Student(6,"Duy");
         Student a7 = new Student(7,"Duy");
         Student a8 = new Student(8,"Duy");
