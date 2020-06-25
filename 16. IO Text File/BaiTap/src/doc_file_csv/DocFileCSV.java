@@ -26,8 +26,9 @@ public class DocFileCSV {
         for (String str:arr) {
             if ("".equals(str)) break;
             index++;
+            str = str.replaceAll("\"","");
             array = str.split(",");
-            System.out.println("\""+index+"\","+array[array.length-2]+","+array[array.length-1]);
+            System.out.println(+index+","+array[array.length-2]+","+array[array.length-1]);
         }
     }
 
