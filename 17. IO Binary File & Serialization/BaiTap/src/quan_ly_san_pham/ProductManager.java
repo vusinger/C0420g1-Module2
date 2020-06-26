@@ -6,10 +6,11 @@ import java.util.List;
 import java.util.Scanner;
 
 public class ProductManager {
+
     static final String PATH = "src/content/ProductData.csv";
     static List<Product> dataProduct = new ArrayList<>();
+
     public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
         int choose = 0;
         while (choose != 2) {
             System.out.println();
@@ -17,30 +18,48 @@ public class ProductManager {
             System.out.println("1.Menu");
             System.out.println("2.Exit");
             System.out.print("Choose:");
-            choose = sc.nextInt();
+            choose = numberInput();
             if (choose == 1) {
                 try {
                     khoiTaoFileData();
                     convertData();
                     if (showMenu() == 6) break;
                 } catch (IOException | ClassNotFoundException e) {
-                    e.printStackTrace();
+                    dataProduct.clear();
+                    convertToFile();
+                    System.out.println("IOException | ClassNotFoundException");
                     break;
-                } finally {
-                    try {
-                        convertToFile();
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
                 }
             }
         }
     }
 
+    //--------------------------------------------
+    private static int numberInput() {
+        Scanner scn = new Scanner(System.in);
+        int num = 0;
+        while (true) {
+            String inputString = scn.nextLine();
+            try {
+                num = Integer.parseInt(inputString);
+                break;
+            } catch (NumberFormatException e) {
+                System.out.println("Nhap sai dinh dang so");
+            }
+        }
+        return num;
+    }
+
+    private static String stringInput() {
+        Scanner scn = new Scanner(System.in);
+        return scn.nextLine();
+    }
+
+    //  ---------------------------------------------------------
     private static void khoiTaoFileData() throws IOException {
         File dir = new File("src/content");
         dir.mkdir();
-        File file = new File("src/content","ProductData.csv");
+        File file = new File("src/content", "ProductData.csv");
         if (!file.exists()) {
             FileOutputStream fileOutputStream = new FileOutputStream(PATH);
             ObjectOutputStream objectOutputStream = new ObjectOutputStream(fileOutputStream);
@@ -50,10 +69,10 @@ public class ProductManager {
         }
     }
 
-    private static int showMenu() throws IOException, ClassNotFoundException {
+    //  -------------------------------------------------------------
+    private static int showMenu() throws IOException {
         System.out.println();
         System.out.println("-----------------Product Manager Program-----------------");
-        Scanner sc = new Scanner(System.in);
         System.out.println("1.Add product");
         System.out.println("2.Show product");
         System.out.println("3.Find product");
@@ -61,19 +80,23 @@ public class ProductManager {
         System.out.println("5.Return menu");
         System.out.println("6.Exit");
         System.out.print("Choose:");
-        int choose = sc.nextInt();
+        int choose = numberInput();
         switch (choose) {
             case 1:
                 addProduct();
+                choose = showMenu();
                 break;
             case 2:
                 showProduct();
+                choose = showMenu();
                 break;
             case 3:
                 findProduct();
+                choose = showMenu();
                 break;
             case 4:
                 removeProduct();
+                choose = showMenu();
                 break;
             default:
                 break;
@@ -81,6 +104,7 @@ public class ProductManager {
         return choose;
     }
 
+    //  ------------------------------------------------------------
     private static void convertData() throws IOException, ClassNotFoundException {
         FileInputStream fileInputStream = new FileInputStream(PATH);
         ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream);
@@ -89,28 +113,26 @@ public class ProductManager {
         fileInputStream.close();
     }
 
-    private static void convertToFile() throws IOException {
-        FileOutputStream fileOutputStream = new FileOutputStream(PATH);
-        ObjectOutputStream objectOutputStream = new ObjectOutputStream(fileOutputStream);
-        objectOutputStream.writeObject(dataProduct);
-        objectOutputStream.close();
-        fileOutputStream.close();
+    private static void convertToFile() {
+        try {
+            FileOutputStream fileOutputStream = new FileOutputStream(PATH);
+            ObjectOutputStream objectOutputStream = new ObjectOutputStream(fileOutputStream);
+            objectOutputStream.writeObject(dataProduct);
+            objectOutputStream.close();
+            fileOutputStream.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
-    private static void removeProduct() throws IOException, ClassNotFoundException {
-        Scanner sc = new Scanner(System.in);
+    //  ----------------------------------------------------------
+    private static void removeProduct() throws IOException {
         System.out.println("Input Product ID To Remove:");
-        String productIDString = sc.nextLine();
-        int productID = 0;
-        try {
-            productID = Integer.parseInt(productIDString);
-        } catch (NumberFormatException e) {
-            System.err.println("Xay ra loi nhap sai dinh dang!!!!");
-        }
+        int productID = numberInput();
         int index = 0;
         boolean check = false;
-        for (Product obj:dataProduct) {
-            if (obj.getProductId()== productID) {
+        for (Product obj : dataProduct) {
+            if (obj.getProductId() == productID) {
                 check = true;
                 break;
             }
@@ -124,10 +146,10 @@ public class ProductManager {
         }
     }
 
+    //  ------------------------------------------------------------
     private static void findProduct() {
-        Scanner sc = new Scanner(System.in);
         System.out.println("Find Name Product:");
-        String productName = sc.nextLine();
+        String productName = stringInput();
         int index = 0;
         boolean check = false;
         for (Product obj:dataProduct) {
@@ -138,53 +160,43 @@ public class ProductManager {
             index++;
         }
         if (check) {
-        System.out.println(dataProduct.get(index));
+            System.out.println(dataProduct.get(index));
         } else {
             System.out.println("San pham ban tim khong thay!!!");
         }
     }
 
-    private static void showProduct() throws IOException, ClassNotFoundException {
+    //  --------------------------------------------------------------
+    private static void showProduct() {
         System.out.println("----------------List Product----------------");
         for (Product obj : dataProduct) {
             System.out.println(obj.toString());
         }
     }
 
-    private static void addProduct() throws IOException, ClassNotFoundException {
-        Scanner sc = new Scanner(System.in);
+    //  ------------------------------------------------------------------------
+    private static void addProduct() throws IOException {
         FileOutputStream file = new FileOutputStream(PATH);
         ObjectOutputStream osi = new ObjectOutputStream(file);
         String choose = "yes";
-        String numString;
-        int numb = 0;
-        boolean check = false;
-        Product obj = new Product();
-        while(!"no".equals(choose)) {
-            numb = 0;
+        Product obj;
+        while (!"no".equals(choose)) {
             obj = new Product();
             System.out.print("Input Product ID:");
-            numString = sc.nextLine();
-            try {
-                numb = Integer.parseInt(numString);
-                obj.setProductId(numb);
-                check = true;
-            } catch (NumberFormatException e) {
-                System.out.println("Loi nhap sai dinh dang id!!!");
-                sc.nextLine();
-            }
+            obj.setProductId(numberInput());
             System.out.print("Input Product Name:");
-            obj.setProductName(sc.nextLine());
+            obj.setProductName(stringInput());
             System.out.print("Input Product Maker:");
-            obj.setProductMaker(sc.nextLine());
+            obj.setProductMaker(stringInput());
             System.out.print("Input Product Cost:");
-            obj.setProductCost(sc.nextLine());
-            if (check) dataProduct.add(obj);
+            obj.setProductCost(stringInput());
+            dataProduct.add(obj);
             System.out.println("Do you want to continue input product??(yes/no)");
-            choose = sc.nextLine();
+            choose = stringInput();
         }
-        if (check) osi.writeObject(dataProduct);
+        osi.writeObject(dataProduct);
         osi.close();
         file.close();
     }
+//  ----------------------------------------------------------------------
 }
