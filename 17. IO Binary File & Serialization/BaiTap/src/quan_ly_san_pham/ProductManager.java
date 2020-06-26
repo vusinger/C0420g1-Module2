@@ -58,15 +58,19 @@ public class ProductManager {
         switch (choose) {
             case 1:
                 addProduct();
+                showMenu();
                 break;
             case 2:
                 showProduct();
+                showMenu();
                 break;
             case 3:
                 findProduct();
+                showMenu();
                 break;
             case 4:
                 removeProduct();
+                showMenu();
                 break;
             default:
                 break;
@@ -93,16 +97,28 @@ public class ProductManager {
     private static void removeProduct() throws IOException, ClassNotFoundException {
         Scanner sc = new Scanner(System.in);
         System.out.println("Input Product ID To Remove:");
-        int productID = sc.nextInt();
+        String productIDString = sc.nextLine();
+        int productID = 0;
+        try {
+            productID = Integer.parseInt(productIDString);
+        } catch (NumberFormatException e) {
+            System.err.println("Xay ra loi nhap sai dinh dang!!!!");
+        }
         int index = 0;
+        boolean check = false;
         for (Product obj:dataProduct) {
             if (obj.getProductId()== productID) {
+                check = true;
                 break;
             }
             index++;
         }
-        dataProduct.remove(index);
-        convertToFile();
+        if (check){
+            dataProduct.remove(index);
+            convertToFile();
+        } else {
+            System.out.println("San Pham Ban Nhap Khong Co!!!");
+        }
     }
 
     private static void findProduct() {
