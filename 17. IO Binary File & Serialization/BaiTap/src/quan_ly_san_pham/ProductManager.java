@@ -25,6 +25,13 @@ public class ProductManager {
                     if (showMenu() == 6) break;
                 } catch (IOException | ClassNotFoundException e) {
                     e.printStackTrace();
+                    break;
+                } finally {
+                    try {
+                        convertToFile();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
                 }
             }
         }
@@ -58,19 +65,15 @@ public class ProductManager {
         switch (choose) {
             case 1:
                 addProduct();
-                showMenu();
                 break;
             case 2:
                 showProduct();
-                showMenu();
                 break;
             case 3:
                 findProduct();
-                showMenu();
                 break;
             case 4:
                 removeProduct();
-                showMenu();
                 break;
             default:
                 break;
@@ -153,23 +156,34 @@ public class ProductManager {
         FileOutputStream file = new FileOutputStream(PATH);
         ObjectOutputStream osi = new ObjectOutputStream(file);
         String choose = "yes";
+        String numString;
+        int numb = 0;
+        boolean check = false;
         Product obj = new Product();
         while(!"no".equals(choose)) {
+            numb = 0;
             obj = new Product();
             System.out.print("Input Product ID:");
-            obj.setProductId(sc.nextInt());
-            sc.nextLine();
+            numString = sc.nextLine();
+            try {
+                numb = Integer.parseInt(numString);
+                obj.setProductId(numb);
+                check = true;
+            } catch (NumberFormatException e) {
+                System.out.println("Loi nhap sai dinh dang id!!!");
+                sc.nextLine();
+            }
             System.out.print("Input Product Name:");
             obj.setProductName(sc.nextLine());
             System.out.print("Input Product Maker:");
             obj.setProductMaker(sc.nextLine());
             System.out.print("Input Product Cost:");
             obj.setProductCost(sc.nextLine());
-            dataProduct.add(obj);
+            if (check) dataProduct.add(obj);
             System.out.println("Do you want to continue input product??(yes/no)");
             choose = sc.nextLine();
         }
-        osi.writeObject(dataProduct);
+        if (check) osi.writeObject(dataProduct);
         osi.close();
         file.close();
     }
