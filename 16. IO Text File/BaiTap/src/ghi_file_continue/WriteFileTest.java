@@ -11,7 +11,7 @@ public class WriteFileTest {
 
     public static void main(String[] args) {
         try {
-//            ghiFile();
+            ghiFile();
             ghiFile1();
         } catch (IOException e) {
             e.printStackTrace();

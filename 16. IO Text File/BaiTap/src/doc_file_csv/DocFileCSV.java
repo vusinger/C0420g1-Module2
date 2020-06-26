@@ -9,12 +9,12 @@ public class DocFileCSV {
     static final String PATH = "src/content/file.csv";
 
     public static void main(String[] args) {
-//        String str = docTuManHinh();
+        StringBuffer str = docTuManHinh();
         try {
-//            ghiFile(PATH,str);
+            ghiFile(PATH, str);
             List<String> arr = new ArrayList<>();
             arr = docfileCSV(PATH);
-            showResult(arr);
+//            showResult(arr);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -45,21 +45,32 @@ public class DocFileCSV {
         return (ArrayList<String>) arr;
     }
 
-    private static void ghiFile(String path, String str) throws IOException {
+    private static void ghiFile(String path, StringBuffer str) throws IOException {
         FileWriter file = new FileWriter(path);
         BufferedWriter bw = new BufferedWriter(file);
         PrintWriter out = new PrintWriter(bw);
-        out.println(str);
+        out.println(String.valueOf(str));
         bw.close();
         file.close();
     }
 
-    private static String docTuManHinh() {
+    private static StringBuffer docTuManHinh() {
         Scanner scn = new Scanner(System.in);
-        String line = null, str="";
+        String line = " ";
+        StringBuffer str = new StringBuffer();
         while(!"".equals(line)) {
             line = scn.nextLine();
-            str += line + "\n";
+            if ("".equals(line)) {
+                line = scn.nextLine();
+                if ("".equals(line)) {
+                    line = scn.nextLine();
+                    if ("".equals(line)) {
+                        break;
+                    }
+                }
+            }
+            line += "\n";
+            str.append(line);
         }
         return str;
     }
