@@ -1,12 +1,18 @@
 package ung_dung_quan_ly_khu_nghi_duong_furama.models;
 
-public abstract class Services {
+import java.io.Serializable;
+
+public abstract class Services implements Serializable {
+
+    private static final long serialVersionUID = 1L;
     private int id;
     private String serviceName;
     private double useArea;
     private double rentalCost;
     private int maximumPerson;
-    private String[] rentType = {"HourlyRent","DailyRent","MonthlyRent","YearlyRent"};
+    private int inputRentType;
+    private final String[] rentTypeArray = {"HourlyRent","DailyRent","MonthlyRent","YearlyRent"};
+    private String rentType = rentTypeArray[inputRentType];
     private AccompaniedService[] accompaniedService = new AccompaniedService[5];
 
     public int getId() {
@@ -49,12 +55,12 @@ public abstract class Services {
         this.maximumPerson = maximumPerson;
     }
 
-    public String[] getRentType() {
+    public String getRentType() {
         return rentType;
     }
 
-    public void setRentType(String[] rentType) {
-        this.rentType = rentType;
+    public void setInputRentType(int inputRentType) {
+        this.inputRentType = inputRentType;
     }
 
     public AccompaniedService[] getAccompaniedService() {
@@ -74,7 +80,7 @@ public abstract class Services {
         this.useArea = useArea;
         this.rentalCost = rentalCost;
         this.maximumPerson = maximumPerson;
-        this.rentType = rentType;
+        this.rentType = this.rentTypeArray[this.inputRentType];
         this.accompaniedService = accompaniedService;
         accompaniedService[0] = new AccompaniedService("Massage",0,0);
         accompaniedService[1] = new AccompaniedService("Karaoke",0,0);

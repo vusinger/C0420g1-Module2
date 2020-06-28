@@ -1,6 +1,6 @@
 package ung_dung_quan_ly_khu_nghi_duong_furama.models;
 
-public class Villa extends Services{
+public class Villa extends Services {
 
     private String standardRoom;
     private String otherService;
