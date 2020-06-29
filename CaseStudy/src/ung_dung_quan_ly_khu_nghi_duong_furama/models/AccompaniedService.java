@@ -1,6 +1,10 @@
 package ung_dung_quan_ly_khu_nghi_duong_furama.models;
 
-public class AccompaniedService {
+import java.io.Serializable;
+
+public class AccompaniedService implements Serializable {
+
+    private static final long serialVersionUID = 1L;
     private String name;
     private int unit;
     private double price;

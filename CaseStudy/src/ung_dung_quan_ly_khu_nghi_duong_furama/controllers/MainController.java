@@ -1,14 +1,10 @@
 package ung_dung_quan_ly_khu_nghi_duong_furama.controllers;
 
-import ung_dung_quan_ly_khu_nghi_duong_furama.models.House;
-import ung_dung_quan_ly_khu_nghi_duong_furama.models.Room;
-import ung_dung_quan_ly_khu_nghi_duong_furama.models.Services;
-import ung_dung_quan_ly_khu_nghi_duong_furama.models.Villa;
+import ung_dung_quan_ly_khu_nghi_duong_furama.models.*;
 
 import java.io.*;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Scanner;
+import java.util.*;
+import java.util.regex.Pattern;
 
 public class MainController {
 
@@ -18,22 +14,35 @@ public class MainController {
     static List<Services> houseArray = new ArrayList<>();
     final static String PATHROOM = "src/ung_dung_quan_ly_khu_nghi_duong_furama/data/Room.csv";
     static List<Services> roomArray = new ArrayList<>();
+    final static String PATHCUSTOMER = "src/ung_dung_quan_ly_khu_nghi_duong_furama/data/Customer.csv";
+    static List<Customer> customerArray = new ArrayList<>();
 
     public static void main(String[] args) {
         try {
-            generateFile("Villa.csv",PATHVILLA,villaArray);
-            villaArray = convertData(PATHVILLA,villaArray);
-            generateFile("House.csv",PATHHOUSE,houseArray);
-            houseArray = convertData(PATHHOUSE,houseArray);
-            generateFile("Room.csv",PATHROOM,roomArray);
-            roomArray = convertData(PATHROOM,roomArray);
+            FileSolution<Services> file1 = new FileSolution<>("Villa.csv", PATHVILLA, villaArray);
+            file1.generateFile();
+            villaArray = file1.convertData();
+            FileSolution<Services> file2 = new FileSolution<>("House.csv", PATHHOUSE, houseArray);
+            file2.generateFile();
+            houseArray = file2.convertData();
+            FileSolution<Services> file3 = new FileSolution<>("Room.csv", PATHROOM, roomArray);
+            file3.generateFile();
+            roomArray = file3.convertData();
+            FileSolution<Customer> file4 = new FileSolution<>("Customer.csv", PATHCUSTOMER, customerArray);
+            file4.generateFile();
+            customerArray = file4.convertData();
         } catch (IOException e) {
             villaArray.clear();
             houseArray.clear();
             roomArray.clear();
-            convertToFile(PATHVILLA,villaArray);
-            convertToFile(PATHHOUSE,houseArray);
-            convertToFile(PATHROOM,roomArray);
+            FileSolution<Services> file1 = new FileSolution<>("Villa.csv", PATHVILLA, villaArray);
+            file1.convertToFile();
+            FileSolution<Services> file2 = new FileSolution<>("House.csv", PATHHOUSE, houseArray);
+            file2.convertToFile();
+            FileSolution<Services> file3 = new FileSolution<>("Room.csv", PATHROOM, roomArray);
+            file3.convertToFile();
+            FileSolution<Customer> file4 = new FileSolution<>("Customer.csv", PATHCUSTOMER, customerArray);
+            file4.convertToFile();
             e.printStackTrace();
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
@@ -41,41 +50,11 @@ public class MainController {
         displayMainMenu();
     }
 
+    /**
+     * Generic Method
+     */
+
     //  -----------------------------------Generic Method---------------------------------------------
-
-    private static void generateFile(String fileName,String path, List<Services> objectArray) throws IOException {
-        File dir = new File("src/ung_dung_quan_ly_khu_nghi_duong_furama/data/");
-        dir.mkdir();
-        File file = new File("src/ung_dung_quan_ly_khu_nghi_duong_furama/data/", fileName);
-        if (!file.exists()) {
-            FileOutputStream fileOutputStream = new FileOutputStream(path);
-            ObjectOutputStream objectOutputStream = new ObjectOutputStream(fileOutputStream);
-            objectOutputStream.writeObject(objectArray);
-            objectOutputStream.close();
-            fileOutputStream.close();
-        }
-    }
-
-    private static List<Services> convertData(String path, List<Services> objectArray) throws IOException, ClassNotFoundException {
-        FileInputStream fileInputStream = new FileInputStream(path);
-        ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream);
-        objectArray = (List<Services>) objectInputStream.readObject();
-        objectInputStream.close();
-        fileInputStream.close();
-        return objectArray;
-    }
-
-    private static void convertToFile(String path, List<Services> objectArray) {
-        try {
-            FileOutputStream fileOutputStream = new FileOutputStream(path);
-            ObjectOutputStream objectOutputStream = new ObjectOutputStream(fileOutputStream);
-            objectOutputStream.writeObject(objectArray);
-            objectOutputStream.close();
-            fileOutputStream.close();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
 
     private static String inputString() {
         Scanner scn = new Scanner(System.in);
@@ -113,6 +92,12 @@ public class MainController {
         }
         return number;
     }
+
+    /**
+     * Main Method
+     *
+     * @return
+     */
 
     private static int displayMainMenu() {
         System.out.println("--------------------- Furama resort ------------------------");
@@ -165,12 +150,19 @@ public class MainController {
 
     //  --------------------------------------------------------------------------------
     private static void addNewCustomer() {
+
     }
+
+    /**
+     * Show Service method
+     *
+     * @return
+     */
 
     //  -------------------------------- Show Services ---------------------------------
     private static int showServices() {
         System.out.println("--------------------- Furama resort ------------------------");
-        System.out.println("1. Show all Villa\n" +
+        System.out.print("1. Show all Villa\n" +
                 "2. Show all House\n" +
                 "3. Show all Room\n" +
                 "4. Show All Name Villa Not Duplicate\n" +
@@ -182,22 +174,22 @@ public class MainController {
         int choose = inputNumber();
         switch (choose) {
             case 1:
-                showAllVilla();
+                showAll(villaArray,"Villa");
                 break;
             case 2:
-                showAllHouse();
+                showAll(houseArray,"House");
                 break;
             case 3:
-                showAllRoom();
+                showAll(roomArray,"Room");
                 break;
             case 4:
-                showAllNameVillaNotDuplicate();
+                showNameNotDuplicate(villaArray,"Villa");
                 break;
             case 5:
-                showAllNameHouseNotDuplicate();
+                showNameNotDuplicate(houseArray,"House");
                 break;
             case 6:
-                showAllNameRoomNotDuplicate();
+                showNameNotDuplicate(roomArray,"Room");
                 break;
             case 7:
             case 8:
@@ -207,39 +199,39 @@ public class MainController {
         } else choose = showServices();
         return choose;
     }
-
-    private static void showAllNameRoomNotDuplicate() {
-    }
-
-    private static void showAllNameHouseNotDuplicate() {
-    }
-
-    private static void showAllNameVillaNotDuplicate() {
-    }
-
-    private static void showAllRoom() {
-        System.out.println("--------------------- Show All Room ------------------------");
-        for (Services obj:roomArray) {
-            Room objnew = (Room)obj;
-            objnew.showInfo();
+    //  -------------------------------- Show Name -------------------------------
+    private static void showAll(List<Services> objArray, String name) {
+        System.out.println("-------------------- Show all " + name + " ---------------------");
+        for (Services obj:objArray) {
+            if ("Villa".equals(name)) {
+                ((Villa)obj).showInfo();
+            } else if ("House".equals(name)) {
+                ((House)obj).showInfo();
+            } else if ("Room".equals(name)) {
+                ((Room)obj).showInfo();
+            }
         }
     }
-
-    private static void showAllHouse() {
-        System.out.println("--------------------- Show All House ------------------------");
-        for (Services obj:houseArray) {
-            House objnew = (House)obj;
-            objnew.showInfo();
+    private static void showNameNotDuplicate(List<Services> objArray, String name) {
+        System.out.println("-------------------- Show all " + name + " name not duplicate ---------------------");
+        Map<String, Services> hashMap = new HashMap<>();
+        for (Services obj : objArray) {
+            hashMap.put(obj.getServiceName(), obj);
         }
+        Set<String> set = hashMap.keySet();
+        int index = 0;
+        for (String key : set) {
+            index++;
+            System.out.println(index + ". " + key + " " + name + " ");
+        }
+        System.out.println();
     }
 
-    private static void showAllVilla() {
-        System.out.println("--------------------- Show All Villa ------------------------");
-        for (Services obj:villaArray) {
-            Villa objnew = (Villa)obj;
-            objnew.showInfo();
-        }
-    }
+    /**
+     * Add Service Method
+     *
+     * @return
+     */
 
     //  -------------------------------- Add New Service -------------------------------
     private static int addNewServices() {
@@ -253,13 +245,13 @@ public class MainController {
         int choose = inputNumber();
         switch (choose) {
             case 1:
-                addNewVilla();
+                addNewServicesArray(villaArray,"Villa");
                 break;
             case 2:
-                addNewHouse();
+                addNewServicesArray(houseArray,"House");
                 break;
             case 3:
-                addNewRoom();
+                addNewServicesArray(roomArray,"Room");
                 break;
             case 4:
             case 5:
@@ -270,65 +262,123 @@ public class MainController {
         return choose;
     }
 
-    private static void addNewRoom() {
-        System.out.println("----------- Add New Room ----------");
-        Services room = new Room();
-        System.out.print("Room Villa Id:");
-        room.setId(inputNumber());
-        System.out.print("Room Service Name:");
-        room.setServiceName(inputString());
-        System.out.print("Room Use Area:");
-        room.setUseArea(inputNumberDouble());
-        System.out.print("Room Rental Cost:");
-        room.setRentalCost(inputNumberDouble());
-        System.out.print("Room Maximum Person:");
-        room.setMaximumPerson(inputNumber());
-        System.out.print("Room Rent Type(1.HourlyRent, 2.DailyRent, 3.MonthlyRent, 4.YearlyRent):");
-        room.setInputRentType(inputNumber());
+    private static void addNewServicesArray(List<Services> objArray,String name) {
+        System.out.println("----------- Add New Service ----------");
+        Services obj = null;
+        if ("Villa".equals(name)) {
+            obj = new Villa();
+        } else if ("House".equals(name)) {
+            obj = new House();
+        } else if ("Room".equals(name)) {
+            obj = new Room();
+        }
 
-        roomArray.add(room);
-        convertToFile(PATHROOM,roomArray);
+        /**
+         * Find Max ID to set ID
+         */
+        int maxId = objArray.get(0).getId();
+        for (Services objNew : objArray) {
+            if (objNew.getId()>maxId) maxId = objNew.getId();
+        }
+        obj.setId(maxId+1);
+
+        System.out.print(name+" Service Code:");
+        while (true) {
+            obj.setCodeService(inputString());
+            if (obj instanceof Villa) {
+                if (checkCodeService("SVVL-\\d{4}", obj.getCodeService())) {
+                    break;
+                } else System.out.println("Yeu Cau Nhap Dung Dinh Dang SVVL-YYYY");
+            } else if (obj instanceof House) {
+                if (checkCodeService("SVHO-\\d{4}", obj.getCodeService())) {
+                    break;
+                } else System.out.println("Yeu Cau Nhap Dung Dinh Dang SVHO-YYYY");
+            } else if (obj instanceof Room) {
+                if (checkCodeService("SVRO-\\d{4}", obj.getCodeService())) {
+                    break;
+                } else System.out.println("Yeu Cau Nhap Dung Dinh Dang SVRO-YYYY");
+            }
+        }
+        System.out.print(name+" Service Name:");
+        while (true) {
+            obj.setServiceName(inputString());
+            if (checkCodeService("[A-Z][a-z]+", obj.getServiceName())) {
+                break;
+            } else System.out.println("Yeu cau viet hoa chu cai dau tien!!");
+        }
+        System.out.print(name+" Use Area:");
+        while (true) {
+            obj.setUseArea(inputNumberDouble());
+            if (obj.getUseArea() > 30) {
+                break;
+            } else System.out.println("Nhap gia tri lon hon 30!!");
+        }
+        System.out.print(name+" Rental Cost:");
+        while (true) {
+            obj.setRentalCost(inputNumberDouble());
+            if (obj.getRentalCost() > 0) {
+                break;
+            } else System.out.println("Nhap so lon hon 0");
+        }
+
+        System.out.print(name+" Maximum Person:");
+        while (true) {
+            obj.setMaximumPerson(inputNumber());
+            if (obj.getMaximumPerson() > 0 && obj.getMaximumPerson() < 20) {
+                break;
+            } else System.out.println("So luong nguoi phai nho hon 20!!!");
+        }
+
+        System.out.print(name+" Rent Type(1.HourlyRent, 2.DailyRent, 3.MonthlyRent, 4.YearlyRent):");
+        obj.setInputRentType(inputNumber());
+
+        System.out.print(name+" Accompanied Service:");
+        AccompaniedService objNew;
+        while (true) {
+            objNew = new AccompaniedService(inputString(), 0, 0);
+            if ("Massage".equals(objNew.getName()) ||
+                    "Karaoke".equals(objNew.getName()) ||
+                    "Food".equals(objNew.getName()) ||
+                    "Drink".equals(objNew.getName()) ||
+                    "Car".equals(objNew.getName())) {
+                break;
+            } else System.out.println("Yeu Cau nhap dung dich vu di kem:Massage,Karaoke,Food,Drink,Car");
+        }
+        obj.setAccompaniedService(objNew);
+
+        if (obj instanceof Villa) {
+            System.out.print(name+" Pool Area:");
+            while (true) {
+                ((Villa) obj).setPoolArea(inputNumberDouble());
+                if (((Villa) obj).getPoolArea() > 30) {
+                    break;
+                } else System.out.println("Nhap gia tri lon hon 30!!");
+            }
+
+            System.out.print(name+" Floors Number:");
+            while (true) {
+                ((Villa) obj).setFloorsNumber(inputNumber());
+                if (((Villa) obj).getFloorsNumber() > 0) {
+                    break;
+                } else System.out.println("Nhap gia tri lon hon 0!!");
+            }
+            villaArray.add(obj);
+            FileSolution<Services> file = new FileSolution<>("Villa.csv",PATHVILLA,villaArray);
+            file.convertToFile();
+        } else if (obj instanceof House) {
+            houseArray.add(obj);
+            FileSolution<Services> file = new FileSolution<>("House.csv",PATHHOUSE,houseArray);
+            file.convertToFile();
+        } else if (obj instanceof Room) {
+            roomArray.add(obj);
+            FileSolution<Services> file = new FileSolution<>("Room.csv",PATHROOM,roomArray);
+            file.convertToFile();
+        }
     }
 
-    private static void addNewHouse() {
-        System.out.println("----------- Add New House ----------");
-        Services house = new House();
-        System.out.print("House Id:");
-        house.setId(inputNumber());
-        System.out.print("House Service Name:");
-        house.setServiceName(inputString());
-        System.out.print("House Use Area:");
-        house.setUseArea(inputNumberDouble());
-        System.out.print("House Rental Cost:");
-        house.setRentalCost(inputNumberDouble());
-        System.out.print("House Maximum Person:");
-        house.setMaximumPerson(inputNumber());
-        System.out.print("House Rent Type(1.HourlyRent, 2.DailyRent, 3.MonthlyRent, 4.YearlyRent):");
-        house.setInputRentType(inputNumber());
+    //  ------------------------------  Check Regex  ----------------------------------
 
-        houseArray.add(house);
-        convertToFile(PATHHOUSE,houseArray);
+    private static boolean checkCodeService(String regex, String codeService) {
+        return Pattern.matches(regex, codeService);
     }
-
-    private static void addNewVilla() {
-        System.out.println("----------- Add New Villa ----------");
-        Services villa = new Villa();
-        System.out.print("Villa Id:");
-        villa.setId(inputNumber());
-        System.out.print("Villa Service Name:");
-        villa.setServiceName(inputString());
-        System.out.print("Villa Use Area:");
-        villa.setUseArea(inputNumberDouble());
-        System.out.print("Villa Rental Cost:");
-        villa.setRentalCost(inputNumberDouble());
-        System.out.print("Villa Maximum Person:");
-        villa.setMaximumPerson(inputNumber());
-        System.out.print("Villa Rent Type(1.HourlyRent, 2.DailyRent, 3.MonthlyRent, 4.YearlyRent):");
-        villa.setInputRentType(inputNumber());
-
-        villaArray.add(villa);
-        convertToFile(PATHVILLA,villaArray);
-    }
-
-    //  --------------------------------------------------------------------------------
 }
