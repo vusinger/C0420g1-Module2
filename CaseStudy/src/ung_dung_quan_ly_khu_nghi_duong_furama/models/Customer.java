@@ -2,6 +2,7 @@ package ung_dung_quan_ly_khu_nghi_duong_furama.models;
 
 import java.io.*;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Scanner;
 
@@ -19,7 +20,19 @@ public class Customer implements Serializable {
     private String address;
     private Services useService;
 
-    public void showInfo(){
+    public void showInfo() {
+        System.out.println("Customer{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", birthDay='" + birthDay + '\'' +
+                ", gender='" + gender + '\'' +
+                ", idCard='" + idCard + '\'' +
+                ", phoneNumber='" + phoneNumber + '\'' +
+                ", email='" + email + '\'' +
+                ", customerType='" + customerType + '\'' +
+                ", address='" + address + '\'' +
+                ", useService=" + useService +
+                '}');
     }
 
     public int getId() {

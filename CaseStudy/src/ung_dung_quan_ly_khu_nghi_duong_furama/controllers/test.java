@@ -7,7 +7,7 @@ public class test {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         String str = sc.nextLine();
-        System.out.println(Pattern.matches("[A-Z][a-z]+",str));
+        System.out.println(Pattern.matches("(0[1-9]|[12][0-9]|3[01])[/](0[1-9]|1[012])[/](19[0-9][0-9]|20[0][012])",str));
     }
 }
 //    private static void addNewRoom() {

@@ -35,6 +35,7 @@ public class MainController {
             villaArray.clear();
             houseArray.clear();
             roomArray.clear();
+            customerArray.clear();
             FileSolution<Services> file1 = new FileSolution<>("Villa.csv", PATHVILLA, villaArray);
             file1.convertToFile();
             FileSolution<Services> file2 = new FileSolution<>("House.csv", PATHHOUSE, houseArray);
@@ -47,12 +48,11 @@ public class MainController {
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         }
+        /**
+         * Display Menu
+         */
         displayMainMenu();
     }
-
-    /**
-     * Generic Method
-     */
 
     //  -----------------------------------Generic Method---------------------------------------------
 
@@ -146,11 +146,87 @@ public class MainController {
 
     //  --------------------------------------------------------------------------------
     private static void showInformationCustomers() {
+        System.out.println("-------------------- Show All Customer ---------------------");
+        Collections.sort(customerArray,new CustomerComparator());
+        for (Customer obj : customerArray) {
+            obj.showInfo();
+        }
     }
 
     //  --------------------------------------------------------------------------------
     private static void addNewCustomer() {
+        System.out.println("--------------------- Input Customer ------------------------");
+        Customer obj = new Customer();
+        String str;
+        /**
+         * Find Max ID to set ID
+         */
+        int maxId;
+        if (!customerArray.isEmpty()) {
+            maxId = customerArray.get(0).getId();
+        } else maxId = 0;
+        for (Customer objNew : customerArray) {
+            if (objNew.getId() > maxId) maxId = objNew.getId();
+        }
+        obj.setId(maxId + 1);
 
+        System.out.println("Input Customer Name:");
+        while (true) {
+            obj.setName(inputString() + " ");
+            if (Pattern.matches("([A-Z][a-z]+\\s+)*", obj.getName())) {
+                obj.setName(obj.getName().trim());
+                break;
+            } else System.out.println("Can Nhap Dung Dinh Dang(VD:Pham Vu)!!!!");
+        }
+
+        System.out.println("Input Customer BirthDay:");
+        while (true) {
+            obj.setBirthDay(inputString());
+            if (Pattern.matches("(0[1-9]|[12][0-9]|3[01])[/](0[1-9]|1[012])[/](19[0-9][0-9]|20[0][012])", obj.getBirthDay())) {
+                break;
+            } else System.out.println("Nhap Dung Dinh Dang Ngay Sinh dd/mm/yyyy!!");
+        }
+
+        System.out.println("Input Customer Gender:");
+        while (true) {
+            obj.setGender(inputString());
+            str = obj.getGender().toLowerCase().trim();
+            if ("male".equals(str) || "female".equals(str) ||
+                    "unknown".equals(str)) {
+                obj.setGender(str.substring(0, 1).toUpperCase() + str.substring(1));
+                break;
+            } else System.out.println("Can Nhap Dung Dinh Dang(Male/Female/Unknown)!!!!");
+        }
+
+        System.out.println("Input Customer IdCard:");
+        while (true) {
+            obj.setIdCard(inputString());
+            if (Pattern.matches("\\d{9}", obj.getIdCard())) {
+                break;
+            } else System.out.println("CMND phai co 9 chu so!!!");
+        }
+
+        System.out.println("Input Customer Phone Number:");
+        obj.setPhoneNumber(inputString());
+
+        System.out.println("Input Customer Email:");
+        while (true) {
+            obj.setEmail(inputString());
+            str = obj.getEmail().toLowerCase();
+            if (Pattern.matches("[a-z0-9_]+@\\w+\\.\\w+", str)) {
+                break;
+            } else System.out.println("Can Nhap Dung Dinh Dang EMail(VD:vusinger@gmail.com)!!!!");
+        }
+
+        System.out.println("Input Customer Type:");
+        obj.setCustomerType(inputString());
+
+        System.out.println("Input Customer Address:");
+        obj.setAddress(inputString());
+
+        customerArray.add(obj);
+        FileSolution<Customer> fileCustomer = new FileSolution<>("Customer.csv", PATHCUSTOMER, customerArray);
+        fileCustomer.convertToFile();
     }
 
     /**
@@ -174,22 +250,22 @@ public class MainController {
         int choose = inputNumber();
         switch (choose) {
             case 1:
-                showAll(villaArray,"Villa");
+                showAll(villaArray, "Villa");
                 break;
             case 2:
-                showAll(houseArray,"House");
+                showAll(houseArray, "House");
                 break;
             case 3:
-                showAll(roomArray,"Room");
+                showAll(roomArray, "Room");
                 break;
             case 4:
-                showNameNotDuplicate(villaArray,"Villa");
+                showNameNotDuplicate(villaArray, "Villa");
                 break;
             case 5:
-                showNameNotDuplicate(houseArray,"House");
+                showNameNotDuplicate(houseArray, "House");
                 break;
             case 6:
-                showNameNotDuplicate(roomArray,"Room");
+                showNameNotDuplicate(roomArray, "Room");
                 break;
             case 7:
             case 8:
@@ -199,19 +275,21 @@ public class MainController {
         } else choose = showServices();
         return choose;
     }
+
     //  -------------------------------- Show Name -------------------------------
     private static void showAll(List<Services> objArray, String name) {
         System.out.println("-------------------- Show all " + name + " ---------------------");
-        for (Services obj:objArray) {
+        for (Services obj : objArray) {
             if ("Villa".equals(name)) {
-                ((Villa)obj).showInfo();
+                ((Villa) obj).showInfo();
             } else if ("House".equals(name)) {
-                ((House)obj).showInfo();
+                ((House) obj).showInfo();
             } else if ("Room".equals(name)) {
-                ((Room)obj).showInfo();
+                ((Room) obj).showInfo();
             }
         }
     }
+
     private static void showNameNotDuplicate(List<Services> objArray, String name) {
         System.out.println("-------------------- Show all " + name + " name not duplicate ---------------------");
         Map<String, Services> hashMap = new HashMap<>();
@@ -245,13 +323,13 @@ public class MainController {
         int choose = inputNumber();
         switch (choose) {
             case 1:
-                addNewServicesArray(villaArray,"Villa");
+                addNewServicesArray(villaArray, "Villa");
                 break;
             case 2:
-                addNewServicesArray(houseArray,"House");
+                addNewServicesArray(houseArray, "House");
                 break;
             case 3:
-                addNewServicesArray(roomArray,"Room");
+                addNewServicesArray(roomArray, "Room");
                 break;
             case 4:
             case 5:
@@ -262,7 +340,7 @@ public class MainController {
         return choose;
     }
 
-    private static void addNewServicesArray(List<Services> objArray,String name) {
+    private static void addNewServicesArray(List<Services> objArray, String name) {
         System.out.println("----------- Add New Service ----------");
         Services obj = null;
         if ("Villa".equals(name)) {
@@ -276,13 +354,16 @@ public class MainController {
         /**
          * Find Max ID to set ID
          */
-        int maxId = objArray.get(0).getId();
+        int maxId;
+        if (!objArray.isEmpty()) {
+            maxId = objArray.get(0).getId();
+        } else maxId = 0;
         for (Services objNew : objArray) {
-            if (objNew.getId()>maxId) maxId = objNew.getId();
+            if (objNew.getId() > maxId) maxId = objNew.getId();
         }
-        obj.setId(maxId+1);
+        obj.setId(maxId + 1);
 
-        System.out.print(name+" Service Code:");
+        System.out.print(name + " Service Code:");
         while (true) {
             obj.setCodeService(inputString());
             if (obj instanceof Villa) {
@@ -299,21 +380,21 @@ public class MainController {
                 } else System.out.println("Yeu Cau Nhap Dung Dinh Dang SVRO-YYYY");
             }
         }
-        System.out.print(name+" Service Name:");
+        System.out.print(name + " Service Name:");
         while (true) {
             obj.setServiceName(inputString());
             if (checkCodeService("[A-Z][a-z]+", obj.getServiceName())) {
                 break;
             } else System.out.println("Yeu cau viet hoa chu cai dau tien!!");
         }
-        System.out.print(name+" Use Area:");
+        System.out.print(name + " Use Area:");
         while (true) {
             obj.setUseArea(inputNumberDouble());
             if (obj.getUseArea() > 30) {
                 break;
             } else System.out.println("Nhap gia tri lon hon 30!!");
         }
-        System.out.print(name+" Rental Cost:");
+        System.out.print(name + " Rental Cost:");
         while (true) {
             obj.setRentalCost(inputNumberDouble());
             if (obj.getRentalCost() > 0) {
@@ -321,7 +402,7 @@ public class MainController {
             } else System.out.println("Nhap so lon hon 0");
         }
 
-        System.out.print(name+" Maximum Person:");
+        System.out.print(name + " Maximum Person:");
         while (true) {
             obj.setMaximumPerson(inputNumber());
             if (obj.getMaximumPerson() > 0 && obj.getMaximumPerson() < 20) {
@@ -329,10 +410,10 @@ public class MainController {
             } else System.out.println("So luong nguoi phai nho hon 20!!!");
         }
 
-        System.out.print(name+" Rent Type(1.HourlyRent, 2.DailyRent, 3.MonthlyRent, 4.YearlyRent):");
+        System.out.print(name + " Rent Type(1.HourlyRent, 2.DailyRent, 3.MonthlyRent, 4.YearlyRent):");
         obj.setInputRentType(inputNumber());
 
-        System.out.print(name+" Accompanied Service:");
+        System.out.print(name + " Accompanied Service:");
         AccompaniedService objNew;
         while (true) {
             objNew = new AccompaniedService(inputString(), 0, 0);
@@ -347,7 +428,7 @@ public class MainController {
         obj.setAccompaniedService(objNew);
 
         if (obj instanceof Villa) {
-            System.out.print(name+" Pool Area:");
+            System.out.print(name + " Pool Area:");
             while (true) {
                 ((Villa) obj).setPoolArea(inputNumberDouble());
                 if (((Villa) obj).getPoolArea() > 30) {
@@ -355,7 +436,7 @@ public class MainController {
                 } else System.out.println("Nhap gia tri lon hon 30!!");
             }
 
-            System.out.print(name+" Floors Number:");
+            System.out.print(name + " Floors Number:");
             while (true) {
                 ((Villa) obj).setFloorsNumber(inputNumber());
                 if (((Villa) obj).getFloorsNumber() > 0) {
@@ -363,15 +444,15 @@ public class MainController {
                 } else System.out.println("Nhap gia tri lon hon 0!!");
             }
             villaArray.add(obj);
-            FileSolution<Services> file = new FileSolution<>("Villa.csv",PATHVILLA,villaArray);
+            FileSolution<Services> file = new FileSolution<>("Villa.csv", PATHVILLA, villaArray);
             file.convertToFile();
         } else if (obj instanceof House) {
             houseArray.add(obj);
-            FileSolution<Services> file = new FileSolution<>("House.csv",PATHHOUSE,houseArray);
+            FileSolution<Services> file = new FileSolution<>("House.csv", PATHHOUSE, houseArray);
             file.convertToFile();
         } else if (obj instanceof Room) {
             roomArray.add(obj);
-            FileSolution<Services> file = new FileSolution<>("Room.csv",PATHROOM,roomArray);
+            FileSolution<Services> file = new FileSolution<>("Room.csv", PATHROOM, roomArray);
             file.convertToFile();
         }
     }
