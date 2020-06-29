@@ -2,7 +2,7 @@ package ung_dung_quan_ly_khu_nghi_duong_furama.controllers;
 
 import ung_dung_quan_ly_khu_nghi_duong_furama.models.*;
 
-import java.io.*;
+import java.io.IOException;
 import java.util.*;
 import java.util.regex.Pattern;
 
@@ -16,34 +16,14 @@ public class MainController {
     static List<Services> roomArray = new ArrayList<>();
     final static String PATHCUSTOMER = "src/ung_dung_quan_ly_khu_nghi_duong_furama/data/Customer.csv";
     static List<Customer> customerArray = new ArrayList<>();
+    final static String PATHEMPLOYEE = "src/ung_dung_quan_ly_khu_nghi_duong_furama/data/Employee.csv";
+    static Map<Integer,Employee> employeeArray = new HashMap<>();
 
     public static void main(String[] args) {
         try {
-            FileSolution<Services> file1 = new FileSolution<>("Villa.csv", PATHVILLA, villaArray);
-            file1.generateFile();
-            villaArray = file1.convertData();
-            FileSolution<Services> file2 = new FileSolution<>("House.csv", PATHHOUSE, houseArray);
-            file2.generateFile();
-            houseArray = file2.convertData();
-            FileSolution<Services> file3 = new FileSolution<>("Room.csv", PATHROOM, roomArray);
-            file3.generateFile();
-            roomArray = file3.convertData();
-            FileSolution<Customer> file4 = new FileSolution<>("Customer.csv", PATHCUSTOMER, customerArray);
-            file4.generateFile();
-            customerArray = file4.convertData();
+            GenerateDataFile();
         } catch (IOException e) {
-            villaArray.clear();
-            houseArray.clear();
-            roomArray.clear();
-            customerArray.clear();
-            FileSolution<Services> file1 = new FileSolution<>("Villa.csv", PATHVILLA, villaArray);
-            file1.convertToFile();
-            FileSolution<Services> file2 = new FileSolution<>("House.csv", PATHHOUSE, houseArray);
-            file2.convertToFile();
-            FileSolution<Services> file3 = new FileSolution<>("Room.csv", PATHROOM, roomArray);
-            file3.convertToFile();
-            FileSolution<Customer> file4 = new FileSolution<>("Customer.csv", PATHCUSTOMER, customerArray);
-            file4.convertToFile();
+            ResetDataFile();
             e.printStackTrace();
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
@@ -52,6 +32,41 @@ public class MainController {
          * Display Menu
          */
         displayMainMenu();
+    }
+
+    private static void GenerateDataFile() throws IOException, ClassNotFoundException {
+        FileSolution<Services> file1 = new FileSolution<>("Villa.csv", PATHVILLA, villaArray);
+        file1.generateFile();
+        villaArray = file1.convertData();
+        FileSolution<Services> file2 = new FileSolution<>("House.csv", PATHHOUSE, houseArray);
+        file2.generateFile();
+        houseArray = file2.convertData();
+        FileSolution<Services> file3 = new FileSolution<>("Room.csv", PATHROOM, roomArray);
+        file3.generateFile();
+        roomArray = file3.convertData();
+        FileSolution<Customer> file4 = new FileSolution<>("Customer.csv", PATHCUSTOMER, customerArray);
+        file4.generateFile();
+        customerArray = file4.convertData();
+        FileUltilEmployee file5 = new FileUltilEmployee(PATHEMPLOYEE, employeeArray);
+        employeeArray = file5.convertData();
+    }
+
+    private static void ResetDataFile() {
+        villaArray.clear();
+        houseArray.clear();
+        roomArray.clear();
+        customerArray.clear();
+        employeeArray.clear();
+        FileSolution<Services> file1 = new FileSolution<>("Villa.csv", PATHVILLA, villaArray);
+        file1.convertToFile();
+        FileSolution<Services> file2 = new FileSolution<>("House.csv", PATHHOUSE, houseArray);
+        file2.convertToFile();
+        FileSolution<Services> file3 = new FileSolution<>("Room.csv", PATHROOM, roomArray);
+        file3.convertToFile();
+        FileSolution<Customer> file4 = new FileSolution<>("Customer.csv", PATHCUSTOMER, customerArray);
+        file4.convertToFile();
+        FileUltilEmployee file5 = new FileUltilEmployee( PATHEMPLOYEE, employeeArray);
+        file5.convertToFile();
     }
 
     //  -----------------------------------Generic Method---------------------------------------------
@@ -124,7 +139,7 @@ public class MainController {
                 showInformationCustomers();
                 break;
             case 5:
-                addNewBooking();
+                if (addNewBooking() == 5) choose = 7;
                 break;
             case 6:
                 showInformationEmployee();
@@ -138,16 +153,92 @@ public class MainController {
 
     //  --------------------------------------------------------------------------------
     private static void showInformationEmployee() {
+        Set<Integer> set = employeeArray.keySet();
+        for (Integer key : set) {
+            System.out.println(employeeArray.get(key).toString());
+        }
     }
 
     //  --------------------------------------------------------------------------------
-    private static void addNewBooking() {
+    private static int addNewBooking() {
+        System.out.println("--------------------- Booking Service ------------------------");
+        int idRent = 0, idCustomer = 0;
+        System.out.print("1. Booking Villa\n" +
+                "2. Booking House\n" +
+                "3. Booking Room\n" +
+                "4. Return Menu\n" +
+                "5. Exit\n");
+        System.out.println("Choose:");
+        int choose = inputNumber();
+        if ((choose == 5) || (choose == 4)) {
+        } else {
+            showInformationCustomers();
+            System.out.println("Chon ID Customer:");
+            idCustomer = inputNumber();
+        }
+        switch (choose) {
+            case 1:
+                showAll(villaArray, "Villa");
+                System.out.println("Chon ID Villa:");
+                idRent = inputNumber();
+                booking("Villa", idCustomer, idRent);
+                break;
+            case 2:
+                showAll(houseArray, "House");
+                System.out.println("Chon ID House:");
+                idRent = inputNumber();
+                booking("House", idCustomer, idRent);
+                break;
+            case 3:
+                showAll(roomArray, "Room");
+                System.out.println("Chon ID Room:");
+                idRent = inputNumber();
+                booking("Room", idCustomer, idRent);
+                break;
+            case 4:
+            case 5:
+                break;
+        }
+        if ((choose == 5) || (choose == 4)) {
+        } else choose = addNewBooking();
+        return choose;
+    }
+
+    private static void booking(String name, int idCustomer, int idRent) {
+        int index1 = 0;
+        for (Customer customer : customerArray) {
+            if (customer.getId() == idCustomer) break;
+            index1++;
+        }
+        int index2 = 0;
+        if ("Villa".equals(name)) {
+            for (Services villa : villaArray) {
+                if (villa.getId() == idRent) break;
+                index2++;
+            }
+            customerArray.get(index1).setUseService(villaArray.get(index2));
+        } else if ("House".equals(name)) {
+            for (Services house : houseArray) {
+                if (house.getId() == idRent) break;
+                index2++;
+            }
+            customerArray.get(index1).setUseService(houseArray.get(index2));
+        } else if ("Room".equals(name)) {
+            for (Services room : roomArray) {
+                if (room.getId() == idRent) break;
+                index2++;
+            }
+            customerArray.get(index1).setUseService(roomArray.get(index2));
+        }
+
+        FileSolution<Customer> fileCustomer = new FileSolution<>("Customer.csv", PATHCUSTOMER, customerArray);
+        fileCustomer.convertToFile();
     }
 
     //  --------------------------------------------------------------------------------
     private static void showInformationCustomers() {
         System.out.println("-------------------- Show All Customer ---------------------");
-        Collections.sort(customerArray,new CustomerComparator());
+        Collections.sort(customerArray, new CustomerComparator());
         for (Customer obj : customerArray) {
             obj.showInfo();
         }
