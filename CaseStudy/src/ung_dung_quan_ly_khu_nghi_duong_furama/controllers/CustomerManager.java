@@ -9,11 +9,6 @@ import java.util.regex.Pattern;
 
 public class CustomerManager {
 
-    final static String PATHCUSTOMER = "src/ung_dung_quan_ly_khu_nghi_duong_furama/data/Customer.csv";
-    static GenerateFile generateFile = new GenerateFile();
-    static List<Customer> customerArray = generateFile.getCustomerArray();
-
-    //  --------------------------------------------------------------------------------
     public static void addNewCustomer() {
         System.out.println("--------------------- Input Customer ------------------------");
         Customer obj = new Customer();
@@ -22,10 +17,10 @@ public class CustomerManager {
          * Find Max ID to set ID
          */
         int maxId;
-        if (!customerArray.isEmpty()) {
-            maxId = customerArray.get(0).getId();
+        if (!GenerateFile.getCustomerArray().isEmpty()) {
+            maxId = GenerateFile.getCustomerArray().get(0).getId();
         } else maxId = 0;
-        for (Customer objNew : customerArray) {
+        for (Customer objNew : GenerateFile.getCustomerArray()) {
             if (objNew.getId() > maxId) maxId = objNew.getId();
         }
         obj.setId(maxId + 1);
@@ -85,8 +80,11 @@ public class CustomerManager {
         System.out.println("Input Customer Address:");
         obj.setAddress(GenericMethod.inputString());
 
-        customerArray.add(obj);
-        FileSolution<Customer> fileCustomer = new FileSolution<>("Customer.csv", PATHCUSTOMER, customerArray);
+        List<Customer> array = GenerateFile.getCustomerArray();
+        array.add(obj);
+        GenerateFile.setCustomerArray(array);
+
+        FileSolution<Customer> fileCustomer = new FileSolution<>("Customer.csv", GenerateFile.PATHCUSTOMER, GenerateFile.getCustomerArray());
         fileCustomer.convertToFile();
     }
 }

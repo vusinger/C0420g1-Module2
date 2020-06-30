@@ -8,13 +8,6 @@ import java.util.*;
 
 public class ShowManager {
 
-    static GenerateFile generateFile = new GenerateFile();
-    static List<Services> villaArray = generateFile.getVillaArray();
-    static List<Services> houseArray = generateFile.getHouseArray();
-    static List<Services> roomArray = generateFile.getRoomArray();
-    static List<Customer> customerArray = generateFile.getCustomerArray();
-    static Map<Integer, Employee> employeeArray = generateFile.getEmployeeArray();
-
     public static int showServices() {
         System.out.println("--------------------- Furama resort ------------------------");
         System.out.print("1. Show all Villa\n" +
@@ -29,22 +22,22 @@ public class ShowManager {
         int choose = GenericMethod.inputNumber();
         switch (choose) {
             case 1:
-                showAll(villaArray, "Villa");
+                showAll(GenerateFile.getVillaArray(), "Villa");
                 break;
             case 2:
-                showAll(houseArray, "House");
+                showAll(GenerateFile.getHouseArray(), "House");
                 break;
             case 3:
-                showAll(roomArray, "Room");
+                showAll(GenerateFile.getRoomArray(), "Room");
                 break;
             case 4:
-                showNameNotDuplicate(villaArray, "Villa");
+                showNameNotDuplicate(GenerateFile.getVillaArray(), "Villa");
                 break;
             case 5:
-                showNameNotDuplicate(houseArray, "House");
+                showNameNotDuplicate(GenerateFile.getHouseArray(), "House");
                 break;
             case 6:
-                showNameNotDuplicate(roomArray, "Room");
+                showNameNotDuplicate(GenerateFile.getRoomArray(), "Room");
                 break;
             case 7:
             case 8:
@@ -84,16 +77,17 @@ public class ShowManager {
     }
 
     public static void showInformationEmployee() {
-        Set<Integer> set = employeeArray.keySet();
+        Set<Integer> set = GenerateFile.getEmployeeArray().keySet();
         for (Integer key : set) {
-            System.out.println(employeeArray.get(key).toString());
+            System.out.println(GenerateFile.getEmployeeArray().get(key).toString());
         }
     }
 
     public static void showInformationCustomers() {
         System.out.println("-------------------- Show All Customer ---------------------");
-        Collections.sort(customerArray, new CustomerComparator());
-        for (Customer obj : customerArray) {
+        List<Customer> arr = GenerateFile.getCustomerArray();
+        Collections.sort(arr, new CustomerComparator());
+        for (Customer obj : arr) {
             obj.showInfo();
         }
     }

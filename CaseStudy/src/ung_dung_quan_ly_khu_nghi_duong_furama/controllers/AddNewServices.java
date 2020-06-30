@@ -9,14 +9,6 @@ import java.util.regex.Pattern;
 
 public class AddNewServices {
 
-    final static String PATHVILLA = "src/ung_dung_quan_ly_khu_nghi_duong_furama/data/Villa.csv";
-    final static String PATHHOUSE = "src/ung_dung_quan_ly_khu_nghi_duong_furama/data/House.csv";
-    final static String PATHROOM = "src/ung_dung_quan_ly_khu_nghi_duong_furama/data/Room.csv";
-    static GenerateFile generateFile = new GenerateFile();
-    static List<Services> villaArray = generateFile.getVillaArray();
-    static List<Services> houseArray = generateFile.getHouseArray();
-    static List<Services> roomArray = generateFile.getRoomArray();
-
     public static int addNewServices() {
         System.out.println("--------------------- Furama resort ------------------------");
         System.out.println("1. Add New Villa\n" +
@@ -28,13 +20,13 @@ public class AddNewServices {
         int choose = GenericMethod.inputNumber();
         switch (choose) {
             case 1:
-                addNewServicesArray(villaArray, "Villa");
+                addNewServicesArray(GenerateFile.getVillaArray(), "Villa");
                 break;
             case 2:
-                addNewServicesArray(houseArray, "House");
+                addNewServicesArray(GenerateFile.getHouseArray(), "House");
                 break;
             case 3:
-                addNewServicesArray(roomArray, "Room");
+                addNewServicesArray(GenerateFile.getRoomArray(), "Room");
                 break;
             case 4:
             case 5:
@@ -148,16 +140,25 @@ public class AddNewServices {
                     break;
                 } else System.out.println("Nhap gia tri lon hon 0!!");
             }
-            villaArray.add(obj);
-            FileSolution<Services> file = new FileSolution<>("Villa.csv", PATHVILLA, villaArray);
+            List<Services> array = GenerateFile.getVillaArray();
+            array.add(obj);
+            GenerateFile.setVillaArray(array);
+
+            FileSolution<Services> file = new FileSolution<>("Villa.csv", GenerateFile.PATHVILLA, GenerateFile.getVillaArray());
             file.convertToFile();
         } else if (obj instanceof House) {
-            houseArray.add(obj);
-            FileSolution<Services> file = new FileSolution<>("House.csv", PATHHOUSE, houseArray);
+            List<Services> array = GenerateFile.getHouseArray();
+            array.add(obj);
+            GenerateFile.setHouseArray(array);
+
+            FileSolution<Services> file = new FileSolution<>("House.csv", GenerateFile.PATHHOUSE, GenerateFile.getHouseArray());
             file.convertToFile();
         } else if (obj instanceof Room) {
-            roomArray.add(obj);
-            FileSolution<Services> file = new FileSolution<>("Room.csv", PATHROOM, roomArray);
+            List<Services> array = GenerateFile.getRoomArray();
+            array.add(obj);
+            GenerateFile.setRoomArray(array);
+
+            FileSolution<Services> file = new FileSolution<>("Room.csv", GenerateFile.PATHROOM, GenerateFile.getRoomArray());
             file.convertToFile();
         }
     }

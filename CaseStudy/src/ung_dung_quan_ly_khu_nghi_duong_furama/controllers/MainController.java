@@ -10,6 +10,7 @@ public class MainController {
     }
 
     public static int displayMainMenu() {
+        GenerateFile.getData();
         System.out.println("--------------------- Furama resort ------------------------");
         System.out.print("1. Add New Services\n");
         System.out.print("2. Show Services\n");

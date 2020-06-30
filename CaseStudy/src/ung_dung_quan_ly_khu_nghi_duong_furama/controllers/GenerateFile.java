@@ -13,41 +13,61 @@ import java.util.Map;
 public class GenerateFile {
 
     final static String PATHVILLA = "src/ung_dung_quan_ly_khu_nghi_duong_furama/data/Villa.csv";
-    private List<Services> villaArray = new ArrayList<>();
+    static List<Services> villaArray = new ArrayList<>();
     final static String PATHHOUSE = "src/ung_dung_quan_ly_khu_nghi_duong_furama/data/House.csv";
-    private List<Services> houseArray = new ArrayList<>();
+    static List<Services> houseArray = new ArrayList<>();
     final static String PATHROOM = "src/ung_dung_quan_ly_khu_nghi_duong_furama/data/Room.csv";
-    private List<Services> roomArray = new ArrayList<>();
+    static List<Services> roomArray = new ArrayList<>();
     final static String PATHCUSTOMER = "src/ung_dung_quan_ly_khu_nghi_duong_furama/data/Customer.csv";
-    private List<Customer> customerArray = new ArrayList<>();
+    static List<Customer> customerArray = new ArrayList<>();
     final static String PATHEMPLOYEE = "src/ung_dung_quan_ly_khu_nghi_duong_furama/data/Employee.csv";
-    private Map<Integer, Employee> employeeArray = new HashMap<>();
+    static Map<Integer, Employee> employeeArray = new HashMap<>();
 
     public GenerateFile() {
         this.getData();
     }
 
-    public List<Services> getVillaArray() {
+    public static List<Services> getVillaArray() {
         return villaArray;
     }
 
-    public List<Services> getHouseArray() {
+    public static List<Services> getHouseArray() {
         return houseArray;
     }
 
-    public List<Services> getRoomArray() {
+    public static List<Services> getRoomArray() {
         return roomArray;
     }
 
-    public List<Customer> getCustomerArray() {
+    public static List<Customer> getCustomerArray() {
         return customerArray;
     }
 
-    public Map<Integer, Employee> getEmployeeArray() {
+    public static Map<Integer, Employee> getEmployeeArray() {
         return employeeArray;
     }
 
-    public void GenerateDataFile() throws IOException, ClassNotFoundException {
+    public static void setVillaArray(List<Services> villaArray) {
+        GenerateFile.villaArray = villaArray;
+    }
+
+    public static void setHouseArray(List<Services> houseArray) {
+        GenerateFile.houseArray = houseArray;
+    }
+
+    public static void setRoomArray(List<Services> roomArray) {
+        GenerateFile.roomArray = roomArray;
+    }
+
+    public static void setCustomerArray(List<Customer> customerArray) {
+        GenerateFile.customerArray = customerArray;
+    }
+
+    public static void setEmployeeArray(Map<Integer, Employee> employeeArray) {
+        GenerateFile.employeeArray = employeeArray;
+    }
+
+    public static void GenerateDataFile() throws IOException, ClassNotFoundException {
         FileSolution<Services> file1 = new FileSolution<>("Villa.csv", PATHVILLA, villaArray);
         file1.generateFile();
         villaArray = file1.convertData();
@@ -64,7 +84,7 @@ public class GenerateFile {
         employeeArray = file5.convertData();
     }
 
-    public void ResetDataFile() {
+    public static void ResetDataFile() {
         villaArray.clear();
         houseArray.clear();
         roomArray.clear();
@@ -82,11 +102,11 @@ public class GenerateFile {
         file5.convertToFile();
     }
 
-    public void getData() {
+    public static void getData() {
         try {
-            this.GenerateDataFile();
+            GenerateDataFile();
         } catch (IOException e) {
-            this.ResetDataFile();
+            ResetDataFile();
             e.printStackTrace();
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
