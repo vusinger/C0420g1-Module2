@@ -33,6 +33,16 @@ public class Customer implements Serializable {
                 ", address='" + address + '\'' +
                 ", useService=" + useService +
                 '}');
+        if (useService!=null) {
+            String[] arr = useService.getCodeService().split("-");
+            if ("SVVL".equals(arr[0])) {
+                System.out.println("Booking:" + useService.getServiceName()+" Villa");
+            } else if ("SVHO".equals(arr[0])) {
+                System.out.println("Booking:" + useService.getServiceName()+" House");
+            } else if ("SVRO".equals(arr[0])) {
+                System.out.println("Booking:" + useService.getServiceName()+" Room");
+            }
+        }
     }
 
     public int getId() {
