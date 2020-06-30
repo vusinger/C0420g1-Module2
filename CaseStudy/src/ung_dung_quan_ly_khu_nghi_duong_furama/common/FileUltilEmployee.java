@@ -1,4 +1,6 @@
-package ung_dung_quan_ly_khu_nghi_duong_furama.models;
+package ung_dung_quan_ly_khu_nghi_duong_furama.common;
+
+import ung_dung_quan_ly_khu_nghi_duong_furama.models.Employee;
 
 import java.io.*;
 import java.util.Map;
@@ -6,7 +8,7 @@ import java.util.Set;
 
 public class FileUltilEmployee {
     private String path;
-    private Map<Integer,Employee> objectArray;
+    private Map<Integer, Employee> objectArray;
 
     public FileUltilEmployee(String path, Map<Integer,Employee> objectArray) {
         this.path = path;

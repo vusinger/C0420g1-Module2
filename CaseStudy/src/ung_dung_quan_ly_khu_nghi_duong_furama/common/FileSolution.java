@@ -1,4 +1,4 @@
-package ung_dung_quan_ly_khu_nghi_duong_furama.models;
+package ung_dung_quan_ly_khu_nghi_duong_furama.common;
 
 import java.io.*;
 import java.util.List;
