@@ -3,7 +3,6 @@ package ung_dung_quan_ly_khu_nghi_duong_furama.controllers;
 import ung_dung_quan_ly_khu_nghi_duong_furama.common.GenericMethod;
 import ung_dung_quan_ly_khu_nghi_duong_furama.common.Regex;
 import ung_dung_quan_ly_khu_nghi_duong_furama.models.Customer;
-import ung_dung_quan_ly_khu_nghi_duong_furama.common.FileSolution;
 
 import java.util.List;
 
