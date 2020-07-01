@@ -5,10 +5,14 @@ import ung_dung_quan_ly_khu_nghi_duong_furama.common.Regex;
 import ung_dung_quan_ly_khu_nghi_duong_furama.models.*;
 
 import java.util.List;
-import java.util.regex.Pattern;
 
 public class AddNewServices {
+//  ---------------------------------------------------------------------------
 
+    /**
+     * Add service
+     * @return choose
+     */
     public static int addNewServices() {
         System.out.println("--------------------- Furama resort ------------------------");
         System.out.println("1. Add New Villa\n" +
@@ -36,7 +40,13 @@ public class AddNewServices {
         } else choose = addNewServices();
         return choose;
     }
+//  ---------------------------------------------------------------------------
 
+    /**
+     * Phuong thuc add chung
+     * @param objArray VillaArray,HouseArray,RoomArray
+     * @param name Villa,House,Room
+     */
     public static void addBuilding(List<Services> objArray, String name) {
         System.out.println("----------- Add New Service ----------");
         Services building = null;
@@ -47,7 +57,7 @@ public class AddNewServices {
         /**
          * Set Id cho Object
          */
-        building.setId(GenericMethod.findMaxService(objArray) + 1);
+        building.setId(GenericMethod.findMax(name) + 1);
 
         /**
          * Set Service Code
@@ -117,13 +127,22 @@ public class AddNewServices {
         building.setAccompaniedService(accompaniedService);
 
         if ("Villa".equals(name)) {
+            /**
+             * Add thuoc tinh rieng cua Villa
+             */
             addVilla(name, (Villa) building);
         }
 
         GenericMethod.saveToArray(name,building);
         GenericMethod.convertToFile(name);
     }
+//  ---------------------------------------------------------------------------
 
+    /**
+     * Add thuoc tinh rieng cua Villa
+     * @param name Villa
+     * @param building Villa
+     */
     private static void addVilla(String name, Villa building) {
         System.out.print(name + " Pool Area:");
         double villaPoolArea;

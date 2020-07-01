@@ -4,7 +4,6 @@ import ung_dung_quan_ly_khu_nghi_duong_furama.controllers.GenerateFile;
 import ung_dung_quan_ly_khu_nghi_duong_furama.models.*;
 
 import java.util.List;
-import java.util.Map;
 import java.util.Scanner;
 
 public class GenericMethod {
@@ -15,9 +14,8 @@ public class GenericMethod {
     final static String PATHEMPLOYEE = "src/ung_dung_quan_ly_khu_nghi_duong_furama/data/Employee.csv";
 
     /**
-     * Phuong phap chung
-     *
-     * @return
+     * Input data
+     * @return String, integer, double
      */
     public static String inputString() {
         Scanner scn = new Scanner(System.in);
@@ -55,29 +53,43 @@ public class GenericMethod {
         }
         return number;
     }
+//-------------------------------------------------------
 
-    public static int findMaxService(List<Services> array) {
-        int maxId;
-        if (!array.isEmpty()) {
-            maxId = array.get(0).getId();
-        } else maxId = 0;
-        for (Services obj : array) {
-            if (obj.getId() > maxId) maxId = obj.getId();
+    /**
+     * Tim gia tri MaxID trong mang
+     * @param name:Villa House Room Customer
+     * @return maxid
+     */
+    public static int findMax(String name) {
+        if ("Customer".equals(name)) return findMaxCustomer();
+        else return findMaxService(name);
+    }
+
+    private static int findMaxService(String name) {
+        List<Services> services = GenerateFile.getArray(name);
+        int maxId = 0;
+        if(!services.isEmpty()) maxId = services.get(0).getId();
+        for (Services obj:services) {
+            if (obj.getId()>maxId) maxId = obj.getId();
         }
         return maxId;
     }
 
-    public static int findMaxCustomer(List<Customer> array) {
-        int maxId;
-        if (!array.isEmpty()) {
-            maxId = array.get(0).getId();
-        } else maxId = 0;
-        for (Customer obj : array) {
-            if (obj.getId() > maxId) maxId = obj.getId();
+    private static int findMaxCustomer() {
+        List<Customer> customer = GenerateFile.getCustomerArray();
+        int maxId = 0;
+        if(!customer.isEmpty()) maxId = customer.get(0).getId();
+        for (Customer obj:customer) {
+            if (obj.getId()>maxId) maxId = obj.getId();
         }
         return maxId;
     }
-
+//--------------------------------------------------------------------
+    /**
+     * Tao object new cho Service
+     * @param name:Villa House Room
+     * @return new object
+     */
     public static Services genarateObject(String name) {
         if ("Villa".equals(name)) {
             return new Villa();
@@ -88,7 +100,12 @@ public class GenericMethod {
         }
         return null;
     }
-
+//-----------------------------------------------------------------------
+    /**
+     * Lay duong dan URL file csv
+     * @param name :Villa House Room Customer Employee
+     * @return PATH_URL
+     */
     public static String getPath(String name) {
         if ("Villa".equals(name)) return PATHVILLA;
         else if ("House".equals(name)) return PATHHOUSE;
@@ -97,7 +114,12 @@ public class GenericMethod {
         else if ("Employee".equals(name)) return PATHEMPLOYEE;
         return null;
     }
+//-----------------------------------------------------------------------
 
+    /**
+     * Ghi vao file csv
+     * @param name :Villa House Room Customer
+     */
     public static void convertToFile(String name) {
         if ("Villa".equals(name)) {
             FileSolution<Services> file = new FileSolution<>(name, GenericMethod.getPath(name), GenerateFile.getVillaArray());
@@ -113,7 +135,13 @@ public class GenericMethod {
             file.convertToFile();
         }
     }
+//-----------------------------------------------------------------------
 
+    /**
+     * Luu object moi vao mang
+     * @param name :Villa House Room Customer
+     * @param obj : new object
+     */
     public static void saveToArray(String name, Object obj) {
         if ("Villa".equals(name)) {
             List<Services> array = GenerateFile.getVillaArray();
@@ -133,4 +161,6 @@ public class GenericMethod {
             GenerateFile.setCustomerArray(array);
         }
     }
+//-----------------------------------------------------------------------
+
 }

@@ -9,6 +9,7 @@ import ung_dung_quan_ly_khu_nghi_duong_furama.views.ShowManager;
 import java.util.List;
 
 public class Booking {
+//  ---------------------------------------------------------------------------
 
     public static int addNewBooking() {
         System.out.println("--------------------- Booking Service ------------------------");
@@ -53,7 +54,14 @@ public class Booking {
         } else choose = addNewBooking();
         return choose;
     }
+//  ---------------------------------------------------------------------------
 
+    /**
+     * Booking luu vao customer array
+     * @param name Villa,House,Room
+     * @param idCustomer : id customer
+     * @param idRent : id array building
+     */
     private static void booking(String name, int idCustomer, int idRent) {
         List<Customer> customerArray = GenerateFile.getCustomerArray();
         List<Services> villaArray = GenerateFile.getVillaArray();
@@ -82,6 +90,7 @@ public class Booking {
             fileCustomer.convertToFile();
         }
     }
+//  ---------------------------------------------------------------------------
 
     private static boolean isCheck2(int idRent, List<Customer> customerArray, List<Services> Array, boolean check1, boolean check2, int index1, int index2) {
         for (Services obj : Array) {

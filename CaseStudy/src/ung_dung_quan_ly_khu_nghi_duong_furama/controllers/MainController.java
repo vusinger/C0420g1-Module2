@@ -9,6 +9,10 @@ public class MainController {
         displayMainMenu();
     }
 
+    /**
+     * menu display
+     * @return
+     */
     public static int displayMainMenu() {
         GenerateFile.getData();
         System.out.println("--------------------- Furama resort ------------------------");

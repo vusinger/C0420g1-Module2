@@ -4,20 +4,16 @@ import ung_dung_quan_ly_khu_nghi_duong_furama.common.GenericMethod;
 import ung_dung_quan_ly_khu_nghi_duong_furama.common.Regex;
 import ung_dung_quan_ly_khu_nghi_duong_furama.models.Customer;
 
-import java.util.List;
-
 public class CustomerManager {
 
     public static void addNewCustomer() {
         System.out.println("--------------------- Input Customer ------------------------");
         Customer customer = new Customer();
 
-        /**
-         * Set ID cho customer object
-         */
-        List<Customer> customerArray = GenerateFile.getCustomerArray();
-        customer.setId(GenericMethod.findMaxCustomer(customerArray) + 1);
+        /* Set ID cho Object*/
+        customer.setId(GenericMethod.findMax("Customer") + 1);
 
+        /*Input customer name*/
         System.out.println("Input Customer Name:");
         String customerName;
         while (true) {
@@ -29,6 +25,7 @@ public class CustomerManager {
         }
         customer.setName(customerName);
 
+        /*Input customer birthday*/
         System.out.println("Input Customer BirthDay:");
         String customerBirthDay;
         while (true) {
@@ -39,6 +36,7 @@ public class CustomerManager {
         }
         customer.setBirthDay(customerBirthDay);
 
+        /*Input customer gender*/
         System.out.println("Input Customer Gender:");
         String customerGender;
         while (true) {
@@ -50,6 +48,7 @@ public class CustomerManager {
         }
         customer.setGender(customerGender);
 
+        /*Input customer Id card*/
         System.out.println("Input Customer IdCard:");
         String customerIdCard;
         while (true) {
@@ -60,10 +59,12 @@ public class CustomerManager {
         }
         customer.setIdCard(customerIdCard);
 
+        /*Input customer phone number*/
         System.out.println("Input Customer Phone Number:");
         String customerPhoneNumber = GenericMethod.inputString();
         customer.setPhoneNumber(customerPhoneNumber);
 
+        /*Input customer email*/
         System.out.println("Input Customer Email:");
         String customerEmail;
         while (true) {
@@ -74,14 +75,17 @@ public class CustomerManager {
         }
         customer.setEmail(customerEmail.trim());
 
+        /*Input customer type*/
         System.out.println("Input Customer Type:");
         String customerType = GenericMethod.inputString();
         customer.setCustomerType(customerType);
 
+        /*Input adress*/
         System.out.println("Input Customer Address:");
         String customerAddress = GenericMethod.inputString();
         customer.setAddress(customerAddress);
 
+        /*Save to file and array*/
         GenericMethod.saveToArray("Customer",customer);
         GenericMethod.convertToFile("Customer");
     }

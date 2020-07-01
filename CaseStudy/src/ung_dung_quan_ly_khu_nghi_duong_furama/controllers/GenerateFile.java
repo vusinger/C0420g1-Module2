@@ -11,7 +11,11 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * Khai bao va su dung Array
+ */
 public class GenerateFile {
+//  ---------------------------------------------------------------------------
 
     static List<Services> villaArray = new ArrayList<>();
     static List<Services> houseArray = new ArrayList<>();
@@ -23,6 +27,22 @@ public class GenerateFile {
         this.getData();
     }
 
+    public static void getData() {
+        try {
+            GenerateDataFile();
+        } catch (IOException e) {
+            ResetDataFile();
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+    }
+//  ---------------------------------------------------------------------------
+
+    /**
+     * Getter va setter
+     * @return ListArray
+     */
     public static List<Services> getVillaArray() {
         return villaArray;
     }
@@ -62,7 +82,13 @@ public class GenerateFile {
     public static void setEmployeeArray(Map<Integer, Employee> employeeArray) {
         GenerateFile.employeeArray = employeeArray;
     }
+//  ---------------------------------------------------------------------------
 
+    /**
+     * Khoi tao mang doc tu file csv
+     * @throws IOException
+     * @throws ClassNotFoundException
+     */
     public static void GenerateDataFile() throws IOException, ClassNotFoundException {
         FileSolution<Services> file1 = new FileSolution<>("Villa", GenericMethod.getPath("Villa"), villaArray);
         file1.generateFile();
@@ -79,7 +105,11 @@ public class GenerateFile {
         FileUltilEmployee file5 = new FileUltilEmployee(GenericMethod.getPath("Employee"), employeeArray);
         employeeArray = file5.convertData();
     }
+//  ---------------------------------------------------------------------------
 
+    /**
+     * Reset lai file csv tu mang
+     */
     public static void ResetDataFile() {
         villaArray.clear();
         houseArray.clear();
@@ -98,17 +128,14 @@ public class GenerateFile {
         file5.convertToFile();
     }
 
-    public static void getData() {
-        try {
-            GenerateDataFile();
-        } catch (IOException e) {
-            ResetDataFile();
-            e.printStackTrace();
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        }
-    }
 
+//  ---------------------------------------------------------------------------
+
+    /**
+     * Get Array
+     * @param name Villa House Room
+     * @return List<Service>
+     */
     public static List<Services> getArray(String name) {
         if ("Villa".equals(name)) return villaArray;
         else if ("House".equals(name)) return houseArray;
@@ -121,4 +148,5 @@ public class GenerateFile {
         else if ("House".equals(name)) GenerateFile.houseArray = array;
         else if ("Room".equals(name)) GenerateFile.roomArray = array;
     }
+//  ---------------------------------------------------------------------------
 }
