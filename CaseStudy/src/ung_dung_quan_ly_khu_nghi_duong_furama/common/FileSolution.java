@@ -10,7 +10,7 @@ public class FileSolution<E> {
     private List<E> objectArray;
 
     public FileSolution(String name, String path, List<E> objectArray) {
-        this.name = name;
+        this.name = name+".csv";
         this.path = path;
         this.objectArray = objectArray;
     }

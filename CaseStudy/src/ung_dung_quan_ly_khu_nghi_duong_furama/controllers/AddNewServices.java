@@ -1,7 +1,7 @@
 package ung_dung_quan_ly_khu_nghi_duong_furama.controllers;
 
-import ung_dung_quan_ly_khu_nghi_duong_furama.common.FileSolution;
 import ung_dung_quan_ly_khu_nghi_duong_furama.common.GenericMethod;
+import ung_dung_quan_ly_khu_nghi_duong_furama.common.Regex;
 import ung_dung_quan_ly_khu_nghi_duong_furama.models.*;
 
 import java.util.List;
@@ -20,13 +20,13 @@ public class AddNewServices {
         int choose = GenericMethod.inputNumber();
         switch (choose) {
             case 1:
-                addNewServicesArray(GenerateFile.getVillaArray(), "Villa");
+                addBuilding(GenerateFile.getVillaArray(), "Villa");
                 break;
             case 2:
-                addNewServicesArray(GenerateFile.getHouseArray(), "House");
+                addBuilding(GenerateFile.getHouseArray(), "House");
                 break;
             case 3:
-                addNewServicesArray(GenerateFile.getRoomArray(), "Room");
+                addBuilding(GenerateFile.getRoomArray(), "Room");
                 break;
             case 4:
             case 5:
@@ -37,133 +37,112 @@ public class AddNewServices {
         return choose;
     }
 
-    public static void addNewServicesArray(List<Services> objArray, String name) {
+    public static void addBuilding(List<Services> objArray, String name) {
         System.out.println("----------- Add New Service ----------");
-        Services obj = null;
-        if ("Villa".equals(name)) {
-            obj = new Villa();
-        } else if ("House".equals(name)) {
-            obj = new House();
-        } else if ("Room".equals(name)) {
-            obj = new Room();
-        }
+        Services building = null;
+        /**
+         * Khoi Tao Object Villa, House, Room
+         */
+        building = GenericMethod.genarateObject(name);
+        /**
+         * Set Id cho Object
+         */
+        building.setId(GenericMethod.findMaxService(objArray) + 1);
 
         /**
-         * Find Max ID to set ID
+         * Set Service Code
          */
-        int maxId;
-        if (!objArray.isEmpty()) {
-            maxId = objArray.get(0).getId();
-        } else maxId = 0;
-        for (Services objNew : objArray) {
-            if (objNew.getId() > maxId) maxId = objNew.getId();
-        }
-        obj.setId(maxId + 1);
-
         System.out.print(name + " Service Code:");
+        String codeService;
         while (true) {
-            obj.setCodeService(GenericMethod.inputString());
-            if (obj instanceof Villa) {
-                if (checkCodeService("SVVL-\\d{4}", obj.getCodeService())) {
-                    break;
-                } else System.out.println("Yeu Cau Nhap Dung Dinh Dang SVVL-YYYY");
-            } else if (obj instanceof House) {
-                if (checkCodeService("SVHO-\\d{4}", obj.getCodeService())) {
-                    break;
-                } else System.out.println("Yeu Cau Nhap Dung Dinh Dang SVHO-YYYY");
-            } else if (obj instanceof Room) {
-                if (checkCodeService("SVRO-\\d{4}", obj.getCodeService())) {
-                    break;
-                } else System.out.println("Yeu Cau Nhap Dung Dinh Dang SVRO-YYYY");
-            }
+            codeService = GenericMethod.inputString();
+            if (Regex.checkCodeService(codeService, name)) {
+                break;
+            } else System.out.println("Yeu cau nhap dung dinh dang " + name + " Service Code!!");
         }
+        building.setCodeService(codeService);
+
         System.out.print(name + " Service Name:");
+        String serviceName;
         while (true) {
-            obj.setServiceName(GenericMethod.inputString());
-            if (checkCodeService("[A-Z][a-z]+", obj.getServiceName())) {
+            serviceName = GenericMethod.inputString();
+            if (Regex.checkServiceName(serviceName)) {
                 break;
             } else System.out.println("Yeu cau viet hoa chu cai dau tien!!");
         }
+        building.setServiceName(serviceName);
+
         System.out.print(name + " Use Area:");
+        double useArea;
         while (true) {
-            obj.setUseArea(GenericMethod.inputNumberDouble());
-            if (obj.getUseArea() > 30) {
+            useArea = GenericMethod.inputNumberDouble();
+            if (Regex.checkValue(useArea, 30)) {
                 break;
             } else System.out.println("Nhap gia tri lon hon 30!!");
         }
+        building.setUseArea(useArea);
+
         System.out.print(name + " Rental Cost:");
+        double rentalCost;
         while (true) {
-            obj.setRentalCost(GenericMethod.inputNumberDouble());
-            if (obj.getRentalCost() > 0) {
+            rentalCost = GenericMethod.inputNumberDouble();
+            if (Regex.checkValue(rentalCost, 0)) {
                 break;
             } else System.out.println("Nhap so lon hon 0");
         }
+        building.setRentalCost(rentalCost);
 
         System.out.print(name + " Maximum Person:");
+        int maxPerson;
         while (true) {
-            obj.setMaximumPerson(GenericMethod.inputNumber());
-            if (obj.getMaximumPerson() > 0 && obj.getMaximumPerson() < 20) {
+            maxPerson = GenericMethod.inputNumber();
+            if (Regex.checkValueMinMax(maxPerson, 0, 20)) {
                 break;
             } else System.out.println("So luong nguoi phai nho hon 20!!!");
         }
+        building.setMaximumPerson(maxPerson);
 
         System.out.print(name + " Rent Type(1.HourlyRent, 2.DailyRent, 3.MonthlyRent, 4.YearlyRent):");
-        obj.setInputRentType(GenericMethod.inputNumber());
+        int inputRentType = GenericMethod.inputNumber();
+        building.setInputRentType(inputRentType);
 
         System.out.print(name + " Accompanied Service:");
-        AccompaniedService objNew;
+        AccompaniedService accompaniedService;
         while (true) {
-            objNew = new AccompaniedService(GenericMethod.inputString(), 0, 0);
-            if ("Massage".equals(objNew.getName()) ||
-                    "Karaoke".equals(objNew.getName()) ||
-                    "Food".equals(objNew.getName()) ||
-                    "Drink".equals(objNew.getName()) ||
-                    "Car".equals(objNew.getName())) {
+            accompaniedService = new AccompaniedService(GenericMethod.inputString(), 0, 0);
+            if (Regex.checkAccompaniedService(accompaniedService.getName())) {
                 break;
             } else System.out.println("Yeu Cau nhap dung dich vu di kem:Massage,Karaoke,Food,Drink,Car");
         }
-        obj.setAccompaniedService(objNew);
+        building.setAccompaniedService(accompaniedService);
 
-        if (obj instanceof Villa) {
-            System.out.print(name + " Pool Area:");
-            while (true) {
-                ((Villa) obj).setPoolArea(GenericMethod.inputNumberDouble());
-                if (((Villa) obj).getPoolArea() > 30) {
-                    break;
-                } else System.out.println("Nhap gia tri lon hon 30!!");
-            }
-
-            System.out.print(name + " Floors Number:");
-            while (true) {
-                ((Villa) obj).setFloorsNumber(GenericMethod.inputNumber());
-                if (((Villa) obj).getFloorsNumber() > 0) {
-                    break;
-                } else System.out.println("Nhap gia tri lon hon 0!!");
-            }
-            List<Services> array = GenerateFile.getVillaArray();
-            array.add(obj);
-            GenerateFile.setVillaArray(array);
-
-            FileSolution<Services> file = new FileSolution<>("Villa.csv", GenerateFile.PATHVILLA, GenerateFile.getVillaArray());
-            file.convertToFile();
-        } else if (obj instanceof House) {
-            List<Services> array = GenerateFile.getHouseArray();
-            array.add(obj);
-            GenerateFile.setHouseArray(array);
-
-            FileSolution<Services> file = new FileSolution<>("House.csv", GenerateFile.PATHHOUSE, GenerateFile.getHouseArray());
-            file.convertToFile();
-        } else if (obj instanceof Room) {
-            List<Services> array = GenerateFile.getRoomArray();
-            array.add(obj);
-            GenerateFile.setRoomArray(array);
-
-            FileSolution<Services> file = new FileSolution<>("Room.csv", GenerateFile.PATHROOM, GenerateFile.getRoomArray());
-            file.convertToFile();
+        if ("Villa".equals(name)) {
+            addVilla(name, (Villa) building);
         }
+
+        GenericMethod.saveToArray(name,building);
+        GenericMethod.convertToFile(name);
     }
 
-    public static boolean checkCodeService(String regex, String codeService) {
-        return Pattern.matches(regex, codeService);
+    private static void addVilla(String name, Villa building) {
+        System.out.print(name + " Pool Area:");
+        double villaPoolArea;
+        while (true) {
+            villaPoolArea = GenericMethod.inputNumberDouble();
+            if (Regex.checkValue(villaPoolArea,30)) {
+                break;
+            } else System.out.println("Nhap gia tri lon hon 30!!");
+        }
+        building.setPoolArea(villaPoolArea);
+
+        System.out.print(name + " Floors Number:");
+        int villaFloorsNumber;
+        while (true) {
+            villaFloorsNumber =GenericMethod.inputNumber();
+            if (Regex.checkValue(villaFloorsNumber,0)) {
+                break;
+            } else System.out.println("Nhap gia tri lon hon 0!!");
+        }
+        building.setFloorsNumber(villaFloorsNumber);
     }
 }

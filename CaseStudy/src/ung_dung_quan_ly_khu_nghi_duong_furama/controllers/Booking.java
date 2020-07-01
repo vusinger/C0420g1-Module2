@@ -78,7 +78,7 @@ public class Booking {
             check2 = isCheck2(idRent, customerArray, roomArray, check1, false, index1, index2);
         }
         if (check1&&check2) {
-            FileSolution<Customer> fileCustomer = new FileSolution<>("Customer.csv", GenerateFile.PATHCUSTOMER, customerArray);
+            FileSolution<Customer> fileCustomer = new FileSolution<>("Customer", GenericMethod.getPath("Customer"), customerArray);
             fileCustomer.convertToFile();
         }
     }

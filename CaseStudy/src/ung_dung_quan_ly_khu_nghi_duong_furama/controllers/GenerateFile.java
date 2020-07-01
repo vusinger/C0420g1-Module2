@@ -2,6 +2,7 @@ package ung_dung_quan_ly_khu_nghi_duong_furama.controllers;
 
 import ung_dung_quan_ly_khu_nghi_duong_furama.common.FileSolution;
 import ung_dung_quan_ly_khu_nghi_duong_furama.common.FileUltilEmployee;
+import ung_dung_quan_ly_khu_nghi_duong_furama.common.GenericMethod;
 import ung_dung_quan_ly_khu_nghi_duong_furama.models.*;
 
 import java.io.IOException;
@@ -12,15 +13,10 @@ import java.util.Map;
 
 public class GenerateFile {
 
-    final static String PATHVILLA = "src/ung_dung_quan_ly_khu_nghi_duong_furama/data/Villa.csv";
     static List<Services> villaArray = new ArrayList<>();
-    final static String PATHHOUSE = "src/ung_dung_quan_ly_khu_nghi_duong_furama/data/House.csv";
     static List<Services> houseArray = new ArrayList<>();
-    final static String PATHROOM = "src/ung_dung_quan_ly_khu_nghi_duong_furama/data/Room.csv";
     static List<Services> roomArray = new ArrayList<>();
-    final static String PATHCUSTOMER = "src/ung_dung_quan_ly_khu_nghi_duong_furama/data/Customer.csv";
     static List<Customer> customerArray = new ArrayList<>();
-    final static String PATHEMPLOYEE = "src/ung_dung_quan_ly_khu_nghi_duong_furama/data/Employee.csv";
     static Map<Integer, Employee> employeeArray = new HashMap<>();
 
     public GenerateFile() {
@@ -68,19 +64,19 @@ public class GenerateFile {
     }
 
     public static void GenerateDataFile() throws IOException, ClassNotFoundException {
-        FileSolution<Services> file1 = new FileSolution<>("Villa.csv", PATHVILLA, villaArray);
+        FileSolution<Services> file1 = new FileSolution<>("Villa", GenericMethod.getPath("Villa"), villaArray);
         file1.generateFile();
         villaArray = file1.convertData();
-        FileSolution<Services> file2 = new FileSolution<>("House.csv", PATHHOUSE, houseArray);
+        FileSolution<Services> file2 = new FileSolution<>("House", GenericMethod.getPath("House"), houseArray);
         file2.generateFile();
         houseArray = file2.convertData();
-        FileSolution<Services> file3 = new FileSolution<>("Room.csv", PATHROOM, roomArray);
+        FileSolution<Services> file3 = new FileSolution<>("Room", GenericMethod.getPath("Room"), roomArray);
         file3.generateFile();
         roomArray = file3.convertData();
-        FileSolution<Customer> file4 = new FileSolution<>("Customer.csv", PATHCUSTOMER, customerArray);
+        FileSolution<Customer> file4 = new FileSolution<>("Customer", GenericMethod.getPath("Customer"), customerArray);
         file4.generateFile();
         customerArray = file4.convertData();
-        FileUltilEmployee file5 = new FileUltilEmployee(PATHEMPLOYEE, employeeArray);
+        FileUltilEmployee file5 = new FileUltilEmployee(GenericMethod.getPath("Employee"), employeeArray);
         employeeArray = file5.convertData();
     }
 
@@ -90,15 +86,15 @@ public class GenerateFile {
         roomArray.clear();
         customerArray.clear();
         employeeArray.clear();
-        FileSolution<Services> file1 = new FileSolution<>("Villa.csv", PATHVILLA, villaArray);
+        FileSolution<Services> file1 = new FileSolution<>("Villa", GenericMethod.getPath("Villa"), villaArray);
         file1.convertToFile();
-        FileSolution<Services> file2 = new FileSolution<>("House.csv", PATHHOUSE, houseArray);
+        FileSolution<Services> file2 = new FileSolution<>("House", GenericMethod.getPath("House"), houseArray);
         file2.convertToFile();
-        FileSolution<Services> file3 = new FileSolution<>("Room.csv", PATHROOM, roomArray);
+        FileSolution<Services> file3 = new FileSolution<>("Room", GenericMethod.getPath("Room"), roomArray);
         file3.convertToFile();
-        FileSolution<Customer> file4 = new FileSolution<>("Customer.csv", PATHCUSTOMER, customerArray);
+        FileSolution<Customer> file4 = new FileSolution<>("Customer", GenericMethod.getPath("Customer"), customerArray);
         file4.convertToFile();
-        FileUltilEmployee file5 = new FileUltilEmployee(PATHEMPLOYEE, employeeArray);
+        FileUltilEmployee file5 = new FileUltilEmployee(GenericMethod.getPath("Employee"), employeeArray);
         file5.convertToFile();
     }
 
@@ -111,5 +107,18 @@ public class GenerateFile {
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         }
+    }
+
+    public static List<Services> getArray(String name) {
+        if ("Villa".equals(name)) return villaArray;
+        else if ("House".equals(name)) return houseArray;
+        else if ("Room".equals(name)) return roomArray;
+        return null;
+    }
+
+    public static void setArray(List<Services> array, String name) {
+        if ("Villa".equals(name)) GenerateFile.villaArray = array;
+        else if ("House".equals(name)) GenerateFile.houseArray = array;
+        else if ("Room".equals(name)) GenerateFile.roomArray = array;
     }
 }

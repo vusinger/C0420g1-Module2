@@ -1,90 +1,89 @@
 package ung_dung_quan_ly_khu_nghi_duong_furama.controllers;
 
 import ung_dung_quan_ly_khu_nghi_duong_furama.common.GenericMethod;
+import ung_dung_quan_ly_khu_nghi_duong_furama.common.Regex;
 import ung_dung_quan_ly_khu_nghi_duong_furama.models.Customer;
 import ung_dung_quan_ly_khu_nghi_duong_furama.common.FileSolution;
 
 import java.util.List;
-import java.util.regex.Pattern;
 
 public class CustomerManager {
 
     public static void addNewCustomer() {
         System.out.println("--------------------- Input Customer ------------------------");
-        Customer obj = new Customer();
-        String str;
+        Customer customer = new Customer();
+
         /**
-         * Find Max ID to set ID
+         * Set ID cho customer object
          */
-        int maxId;
-        if (!GenerateFile.getCustomerArray().isEmpty()) {
-            maxId = GenerateFile.getCustomerArray().get(0).getId();
-        } else maxId = 0;
-        for (Customer objNew : GenerateFile.getCustomerArray()) {
-            if (objNew.getId() > maxId) maxId = objNew.getId();
-        }
-        obj.setId(maxId + 1);
+        List<Customer> customerArray = GenerateFile.getCustomerArray();
+        customer.setId(GenericMethod.findMaxCustomer(customerArray) + 1);
 
         System.out.println("Input Customer Name:");
+        String customerName;
         while (true) {
-            obj.setName(GenericMethod.inputString() + " ");
-            if (Pattern.matches("([A-Z][a-z]+\\s+)*", obj.getName())) {
-                obj.setName(obj.getName().trim());
+            customerName = GenericMethod.inputString() + " ";
+            if (Regex.checkCustomerName(customerName)) {
+                customerName = customerName.trim();
                 break;
             } else System.out.println("Can Nhap Dung Dinh Dang(VD:Pham Vu)!!!!");
         }
+        customer.setName(customerName);
 
         System.out.println("Input Customer BirthDay:");
+        String customerBirthDay;
         while (true) {
-            obj.setBirthDay(GenericMethod.inputString());
-            if (Pattern.matches("(0[1-9]|[12][0-9]|3[01])[/](0[1-9]|1[012])[/](19[0-9][0-9]|20[0][012])", obj.getBirthDay())) {
+            customerBirthDay = GenericMethod.inputString();
+            if (Regex.checkCustomerBirthDay(customerBirthDay)) {
                 break;
             } else System.out.println("Nhap Dung Dinh Dang Ngay Sinh dd/mm/yyyy!!");
         }
+        customer.setBirthDay(customerBirthDay);
 
         System.out.println("Input Customer Gender:");
+        String customerGender;
         while (true) {
-            obj.setGender(GenericMethod.inputString());
-            str = obj.getGender().toLowerCase().trim();
-            if ("male".equals(str) || "female".equals(str) ||
-                    "unknown".equals(str)) {
-                obj.setGender(str.substring(0, 1).toUpperCase() + str.substring(1));
+            customerGender = GenericMethod.inputString().toLowerCase().trim();
+            if (Regex.checkCustomerGender(customerGender)) {
+                customerGender = customerGender.substring(0, 1).toUpperCase() + customerGender.substring(1);
                 break;
             } else System.out.println("Can Nhap Dung Dinh Dang(Male/Female/Unknown)!!!!");
         }
+        customer.setGender(customerGender);
 
         System.out.println("Input Customer IdCard:");
+        String customerIdCard;
         while (true) {
-            obj.setIdCard(GenericMethod.inputString());
-            if (Pattern.matches("\\d{9}", obj.getIdCard())) {
+            customerIdCard = GenericMethod.inputString();
+            if (Regex.checkCustomerIdCard(customerIdCard)) {
                 break;
             } else System.out.println("CMND phai co 9 chu so!!!");
         }
+        customer.setIdCard(customerIdCard);
 
         System.out.println("Input Customer Phone Number:");
-        obj.setPhoneNumber(GenericMethod.inputString());
+        String customerPhoneNumber = GenericMethod.inputString();
+        customer.setPhoneNumber(customerPhoneNumber);
 
         System.out.println("Input Customer Email:");
+        String customerEmail;
         while (true) {
-            obj.setEmail(GenericMethod.inputString());
-            str = obj.getEmail().toLowerCase().trim();
-            if (Pattern.matches("[a-z0-9_]+@\\w+\\.\\w+", str)) {
-                obj.setEmail(obj.getEmail().trim());
+            customerEmail = GenericMethod.inputString();
+            if (Regex.checkCustomerEmail(customerEmail.toLowerCase().trim())) {
                 break;
             } else System.out.println("Can Nhap Dung Dinh Dang EMail(VD:vusinger@gmail.com)!!!!");
         }
+        customer.setEmail(customerEmail.trim());
 
         System.out.println("Input Customer Type:");
-        obj.setCustomerType(GenericMethod.inputString());
+        String customerType = GenericMethod.inputString();
+        customer.setCustomerType(customerType);
 
         System.out.println("Input Customer Address:");
-        obj.setAddress(GenericMethod.inputString());
+        String customerAddress = GenericMethod.inputString();
+        customer.setAddress(customerAddress);
 
-        List<Customer> array = GenerateFile.getCustomerArray();
-        array.add(obj);
-        GenerateFile.setCustomerArray(array);
-
-        FileSolution<Customer> fileCustomer = new FileSolution<>("Customer.csv", GenerateFile.PATHCUSTOMER, GenerateFile.getCustomerArray());
-        fileCustomer.convertToFile();
+        GenericMethod.saveToArray("Customer",customer);
+        GenericMethod.convertToFile("Customer");
     }
 }
