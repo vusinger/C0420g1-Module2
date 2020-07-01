@@ -29,8 +29,15 @@ public class DictionaryController {
     private static void process(Request request) {
         String action = request.getAction();
         String keyword = request.getKeyword();
-        if ("lookup".equals(action)) Lookup.lookupMethod(keyword);
-        else if ("define".equals(action)) Define.defineMethod(keyword);
-        else if ("drop".equals(action)) Drop.dropMethod(keyword);
+        if ("lookup".equals(action)) {
+            Lookup.lookupMethod(keyword);
+        }
+        else if ("define".equals(action)) {
+            String kindOfWord = request.getKindOfWord();
+            Define.defineMethod(kindOfWord,keyword);
+        }
+        else if ("drop".equals(action)) {
+            Drop.dropMethod(keyword);
+        }
     }
 }

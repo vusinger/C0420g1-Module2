@@ -2,20 +2,18 @@ package models;
 
 public class Request {
     private String action;
-    private String[] params = new String[3];
+    private String kindOfWord;
     private String keyword;
-
-    public Request() {
-    }
+    private String[] params = new String[3];
 
     public Request(String action, String keyword) {
         this.action = action;
         this.keyword = keyword;
     }
 
-    public Request(String action, String[] params, String keyword) {
+    public Request(String action, String kindOfWord, String keyword) {
         this.action = action;
-        this.params = params;
+        this.kindOfWord = kindOfWord;
         this.keyword = keyword;
     }
 
@@ -25,6 +23,14 @@ public class Request {
 
     public void setAction(String action) {
         this.action = action;
+    }
+
+    public String getKindOfWord() {
+        return kindOfWord;
+    }
+
+    public void setKindOfWord(String kindOfWord) {
+        this.kindOfWord = kindOfWord;
     }
 
     public String[] getParams() {
