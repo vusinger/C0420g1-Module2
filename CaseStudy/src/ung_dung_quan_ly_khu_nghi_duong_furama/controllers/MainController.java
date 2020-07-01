@@ -1,5 +1,6 @@
 package ung_dung_quan_ly_khu_nghi_duong_furama.controllers;
 
+import ung_dung_quan_ly_khu_nghi_duong_furama.common.GenerateFile;
 import ung_dung_quan_ly_khu_nghi_duong_furama.common.GenericMethod;
 import ung_dung_quan_ly_khu_nghi_duong_furama.views.ShowManager;
 

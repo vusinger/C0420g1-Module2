@@ -1,6 +1,5 @@
 package ung_dung_quan_ly_khu_nghi_duong_furama.common;
 
-import ung_dung_quan_ly_khu_nghi_duong_furama.controllers.GenerateFile;
 import ung_dung_quan_ly_khu_nghi_duong_furama.models.*;
 
 import java.util.List;

@@ -1,7 +1,7 @@
 package ung_dung_quan_ly_khu_nghi_duong_furama.views;
 
 import ung_dung_quan_ly_khu_nghi_duong_furama.common.GenericMethod;
-import ung_dung_quan_ly_khu_nghi_duong_furama.controllers.GenerateFile;
+import ung_dung_quan_ly_khu_nghi_duong_furama.common.GenerateFile;
 import ung_dung_quan_ly_khu_nghi_duong_furama.models.*;
 
 import java.util.*;

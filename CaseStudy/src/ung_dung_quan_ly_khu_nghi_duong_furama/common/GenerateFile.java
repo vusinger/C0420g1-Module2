@@ -1,8 +1,5 @@
-package ung_dung_quan_ly_khu_nghi_duong_furama.controllers;
+package ung_dung_quan_ly_khu_nghi_duong_furama.common;
 
-import ung_dung_quan_ly_khu_nghi_duong_furama.common.FileSolution;
-import ung_dung_quan_ly_khu_nghi_duong_furama.common.FileUltilEmployee;
-import ung_dung_quan_ly_khu_nghi_duong_furama.common.GenericMethod;
 import ung_dung_quan_ly_khu_nghi_duong_furama.models.*;
 
 import java.io.IOException;

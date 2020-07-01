@@ -14,7 +14,7 @@ public class Regex {
     private static final String CUSTOMER_ID_CARD = "\\d{9}";
     private static final String CUSTOMER_EMAIL = "[a-z0-9_]+@\\w+\\.\\w+";
 
-    public static boolean checkCodeService(String inputString,String name){
+    public static boolean checkCodeService(String inputString, String name) {
         if ("Villa".equals(name)) {
             return Pattern.matches(CODE_SERVICE_VILLA, inputString);
         } else if ("House".equals(name)) {
@@ -25,16 +25,16 @@ public class Regex {
         return false;
     }
 
-    public static boolean checkServiceName(String inputString){
+    public static boolean checkServiceName(String inputString) {
         return Pattern.matches(SERVICE_NAME, inputString);
     }
 
     public static boolean checkValue(double numb, int value) {
-        return numb>value;
+        return numb > value;
     }
 
     public static boolean checkValueMinMax(int numb, int min, int max) {
-        return numb>min&&numb<max;
+        return numb > min && numb < max;
     }
 
     public static boolean checkAccompaniedService(String inputString) {

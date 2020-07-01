@@ -1,5 +1,6 @@
 package ung_dung_quan_ly_khu_nghi_duong_furama.controllers;
 
+import ung_dung_quan_ly_khu_nghi_duong_furama.common.GenerateFile;
 import ung_dung_quan_ly_khu_nghi_duong_furama.common.GenericMethod;
 import ung_dung_quan_ly_khu_nghi_duong_furama.common.Regex;
 import ung_dung_quan_ly_khu_nghi_duong_furama.models.*;
@@ -50,18 +51,14 @@ public class AddNewServices {
     public static void addBuilding(List<Services> objArray, String name) {
         System.out.println("----------- Add New Service ----------");
         Services building = null;
-        /**
-         * Khoi Tao Object Villa, House, Room
-         */
+
+        /*Tao object new*/
         building = GenericMethod.genarateObject(name);
-        /**
-         * Set Id cho Object
-         */
+
+        /*Set ID to array*/
         building.setId(GenericMethod.findMax(name) + 1);
 
-        /**
-         * Set Service Code
-         */
+        /*Service Code*/
         System.out.print(name + " Service Code:");
         String codeService;
         while (true) {
@@ -72,6 +69,7 @@ public class AddNewServices {
         }
         building.setCodeService(codeService);
 
+        /*Service Name*/
         System.out.print(name + " Service Name:");
         String serviceName;
         while (true) {
@@ -82,6 +80,7 @@ public class AddNewServices {
         }
         building.setServiceName(serviceName);
 
+        /*Use Area*/
         System.out.print(name + " Use Area:");
         double useArea;
         while (true) {
@@ -92,6 +91,7 @@ public class AddNewServices {
         }
         building.setUseArea(useArea);
 
+        /*Rental Cost*/
         System.out.print(name + " Rental Cost:");
         double rentalCost;
         while (true) {
@@ -102,6 +102,7 @@ public class AddNewServices {
         }
         building.setRentalCost(rentalCost);
 
+        /*Maximum Person*/
         System.out.print(name + " Maximum Person:");
         int maxPerson;
         while (true) {
@@ -112,10 +113,12 @@ public class AddNewServices {
         }
         building.setMaximumPerson(maxPerson);
 
+        /*Rent Type*/
         System.out.print(name + " Rent Type(1.HourlyRent, 2.DailyRent, 3.MonthlyRent, 4.YearlyRent):");
         int inputRentType = GenericMethod.inputNumber();
         building.setInputRentType(inputRentType);
 
+        /*Thuoc tinh di kem*/
         System.out.print(name + " Accompanied Service:");
         AccompaniedService accompaniedService;
         while (true) {
@@ -127,12 +130,11 @@ public class AddNewServices {
         building.setAccompaniedService(accompaniedService);
 
         if ("Villa".equals(name)) {
-            /**
-             * Add thuoc tinh rieng cua Villa
-             */
+            /*Add thuoc tinh rieng cua villa*/
             addVilla(name, (Villa) building);
         }
 
+        /*Save to file*/
         GenericMethod.saveToArray(name,building);
         GenericMethod.convertToFile(name);
     }
@@ -144,6 +146,7 @@ public class AddNewServices {
      * @param building Villa
      */
     private static void addVilla(String name, Villa building) {
+        /*Pool Area*/
         System.out.print(name + " Pool Area:");
         double villaPoolArea;
         while (true) {
@@ -154,6 +157,7 @@ public class AddNewServices {
         }
         building.setPoolArea(villaPoolArea);
 
+        /*Floors Number*/
         System.out.print(name + " Floors Number:");
         int villaFloorsNumber;
         while (true) {
