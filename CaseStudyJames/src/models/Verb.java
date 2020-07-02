@@ -1,9 +1,12 @@
 package models;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Verb {
+public class Verb implements Serializable {
+
+    private static final long serialVersionUID = 1L;
     final String verbVN = "Động từ";
     private List<String> meaning;
     private List<Sentence> sentence;

@@ -1,12 +1,14 @@
 package models;
 
-public class Sentence {
+import java.io.Serializable;
+
+public class Sentence implements Serializable {
+
+    private static final long serialVersionUID = 1L;
     private String sentence;
     private String sentenceMeaning;
 
-    public Sentence(String sentence, String sentenceMeaning) {
-        this.sentence = sentence;
-        this.sentenceMeaning = sentenceMeaning;
+    public Sentence() {
     }
 
     public String getSentence() {

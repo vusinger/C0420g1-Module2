@@ -1,9 +1,12 @@
 package models;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Adjective {
+public class Adjective implements Serializable {
+
+    private static final long serialVersionUID = 1L;
     final String adjectiveVN = "Tính từ";
     private List<String> meaning;
     private List<Sentence> sentence;

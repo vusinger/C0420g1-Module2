@@ -1,12 +1,15 @@
 package common;
 
 import java.io.*;
+import java.util.ArrayList;
 import java.util.List;
 
 public class FileSolution<E> {
 
-    final String PATH_WORD_BANK = "src/data/WordBank.csv";
-    private List<E> array;
+    final String PATH_DIR = "src/data/";
+    final String FILE_NAME = "WordBank.csv";
+
+    private List<E> array = new ArrayList<>();
 
     public List<E> getArray() {
         this.convertToData();
@@ -18,21 +21,31 @@ public class FileSolution<E> {
         this.convertToFile();
     }
 
+    private void generateFile() {
+        File dir = new File(PATH_DIR);
+        dir.mkdir();
+        File file = new File(PATH_DIR,FILE_NAME);
+        if (!file.exists()) {
+            convertToFile();
+        }
+    }
+
     private void convertToFile() {
         try {
-            FileOutputStream fileOutputStream = new FileOutputStream(PATH_WORD_BANK);
+            FileOutputStream fileOutputStream = new FileOutputStream(PATH_DIR+FILE_NAME);
             ObjectOutputStream objectOutputStream = new ObjectOutputStream(fileOutputStream);
             objectOutputStream.writeObject(this.array);
             objectOutputStream.close();
             fileOutputStream.close();
         } catch (IOException e) {
-            e.printStackTrace();
+            System.out.println("Loi ghi file");
         }
     }
 
     public void convertToData() {
         try {
-            FileInputStream fileInputStream = new FileInputStream(PATH_WORD_BANK);
+            generateFile();
+            FileInputStream fileInputStream = new FileInputStream(PATH_DIR+FILE_NAME);
             ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream);
             this.array = (List<E>) objectInputStream.readObject();
             objectInputStream.close();
@@ -40,9 +53,9 @@ public class FileSolution<E> {
         } catch (IOException e) {
             this.array.clear();
             convertToFile();
-            e.printStackTrace();
+            System.out.println("Loi khoi tao file");
         } catch (ClassNotFoundException e) {
-            e.printStackTrace();
+            System.out.println("Loi duong dan file");
         }
     }
 

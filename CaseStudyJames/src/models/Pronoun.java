@@ -1,6 +1,10 @@
 package models;
 
-public class Pronoun {
+import java.io.Serializable;
+
+public class Pronoun implements Serializable {
+
+    private static final long serialVersionUID = 1L;
     final String pronounVn = "Phát Âm";
     private String value;
 
