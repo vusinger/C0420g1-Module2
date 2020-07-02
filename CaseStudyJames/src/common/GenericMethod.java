@@ -7,8 +7,8 @@ import java.util.Scanner;
 public class GenericMethod {
 
     /*Get Request*/
-    public static Request defineRequest(String input) {
-        input = input.trim();
+    public static Request defineRequest(String input) throws Exception {
+        input = input.toLowerCase().trim();
         input = input.replaceAll("\\s+", " ");
         String[] command = input.split(" ");
         if ("define".equals(command[1])) {
@@ -25,7 +25,18 @@ public class GenericMethod {
 
     public static boolean checkContinue() {
         Scanner sc = new Scanner(System.in);
-        System.out.println("Do you want to continue?(True/False)");
-        return sc.nextBoolean();
+        boolean check = false;
+        System.out.println("Do you want to continue?(yes/no)");
+        String input;
+        while(true) {
+            input = sc.nextLine();
+            input = input.toLowerCase().trim();
+            if ("no".equals(input)) {
+                return false;
+            }
+            else if ("yes".equals(input)) {
+                return true;
+            } else System.out.println("Please input right format!!!!!");
+        }
     }
 }

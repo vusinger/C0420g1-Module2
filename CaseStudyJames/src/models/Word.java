@@ -74,7 +74,7 @@ public class Word implements Serializable {
 
     public void showWord() {
         System.out.print("@" + word);
-        if (this.pronoun != null) System.out.print(" " + this.pronoun);
+        if (this.pronoun != null) System.out.print(" " + this.pronoun.getValue());
         System.out.println();
 
         if (adjective != null) {

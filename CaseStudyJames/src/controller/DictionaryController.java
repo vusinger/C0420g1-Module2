@@ -3,10 +3,8 @@ package controller;
 import common.GenericMethod;
 import models.Request;
 
-import java.util.Scanner;
-
 public class DictionaryController {
-    
+
     public static void main(String[] args) {
         main();
     }
@@ -15,14 +13,20 @@ public class DictionaryController {
         System.out.println("-------------- Dictionary ---------------");
         System.out.println("Action: lookup/define/drop ....");
         System.out.println("Input your command:");
-        Scanner sc = new Scanner(System.in);
-        String input = sc.nextLine();
-        if ("exit".equals(input.toLowerCase().trim())) {
-            return;
-        } else {
-            Request request = GenericMethod.defineRequest(input);
-            process(request);
+        String input = GenericMethod.inputString();
+        Request request = null;
+        while (!"exit".equals(input)) {
+            try {
+                request = GenericMethod.defineRequest(input);
+                break;
+            } catch (Exception e) {
+                System.out.println("Please input right format!!!!");
+                input = GenericMethod.inputString();
+            }
         }
+        if (!"exit".equals(input)) {
+            process(request);
+        } else return;
         main();
     }
 
@@ -31,12 +35,10 @@ public class DictionaryController {
         String keyword = request.getKeyword();
         if ("lookup".equals(action)) {
             Lookup.lookupMethod(keyword);
-        }
-        else if ("define".equals(action)) {
+        } else if ("define".equals(action)) {
             String kindOfWord = request.getKindOfWord();
-            Define.defineMethod(kindOfWord,keyword);
-        }
-        else if ("drop".equals(action)) {
+            Define.defineMethod(kindOfWord, keyword);
+        } else if ("drop".equals(action)) {
             Drop.dropMethod(keyword);
         }
     }
