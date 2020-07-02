@@ -19,8 +19,9 @@ public class DictionaryController {
         while (!"exit".equals(input)) {
             try {
                 request = GenericMethod.defineRequest(input);
-                break;
+                if (request != null) break; else throw new Exception("Wrong format!!");
             } catch (Exception e) {
+                System.out.println(e.getMessage());
                 System.out.println("Please input right format!!!!");
                 input = GenericMethod.inputString();
             }

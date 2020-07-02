@@ -3,6 +3,7 @@ package common;
 import models.Request;
 
 import java.util.Scanner;
+import java.util.regex.Pattern;
 
 public class GenericMethod {
 
@@ -11,11 +12,12 @@ public class GenericMethod {
         input = input.toLowerCase().trim();
         input = input.replaceAll("\\s+", " ");
         String[] command = input.split(" ");
+        if (!"action".equals(command[0])) return null;
         if ("define".equals(command[1])) {
             return new Request(command[1], command[2] ,command[3]);
-        } else {
+        } else if (Pattern.matches("lookup|drop|export",command[1])) {
             return new Request(command[1], command[2]);
-        }
+        } else return null;
     }
 
     public static String inputString() {

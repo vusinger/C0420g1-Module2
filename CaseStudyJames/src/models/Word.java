@@ -78,23 +78,23 @@ public class Word implements Serializable {
         String result = "";
         String str = "";
 
-        result = "@" + word;
+        result = "@" + word ;
         if (this.pronoun.getValue() != null) {
             result += " " + this.pronoun.getValue();
         }
         result += "\n";
 
         if ((str = showSentence(adjective.getSentence())) != null) {
-            str = "---------*" + adjective.getAdjectiveVN() + "---------\n" + str;
+            str = "\n---------*" + adjective.getAdjectiveVN() + "---------\n" + str;
             result += str;
         }
 
         if ((str = showSentence(noun.getSentence())) != null) {
-            str = "---------*" + noun.getNounVN() + "---------\n" + str;
+            str = "\n---------*" + noun.getNounVN() + "---------\n" + str;
             result += str;
         }
         if ((str = showSentence(verb.getSentence())) != null) {
-            str = "---------*" + verb.getVerbVN() + "---------\n" + str;
+            str = "\n---------*" + verb.getVerbVN() + "---------\n" + str;
             result += str;
         }
         str = "";
@@ -102,7 +102,7 @@ public class Word implements Serializable {
             str += "-" + obj + "\n";
         }
         if (!"".equals(str)) {
-            str = "---------*" + synonymous.getSynonymousVN() + "--------- \n" + str;
+            str = "\n---------*" + synonymous.getSynonymousVN() + "--------- \n" + str;
             result += str;
         }
         return result;
