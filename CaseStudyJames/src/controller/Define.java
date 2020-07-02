@@ -43,40 +43,39 @@ public class Define {
             if (word.getNoun() == null) {
                 n = new Noun();
             } else n = word.getNoun();
-            n.setMeaning(getMeaning(n.getMeaning()));
-            n.setSentence(getSentence(n.getSentence()));
+            n.setSentence(readSentence(n.getSentence()));
             word.setNoun(n);
         } else if ("--adjective".equals(kindOfWord) || "-a".equals(kindOfWord)) {
             Adjective a;
             if (word.getAdjective() == null) {
                 a = new Adjective();
             } else a = word.getAdjective();
-            a.setMeaning(getMeaning(a.getMeaning()));
-            a.setSentence(getSentence(a.getSentence()));
+            a.setSentence(readSentence(a.getSentence()));
             word.setAdjective(a);
         } else if ("--verb".equals(kindOfWord) || "-v".equals(kindOfWord)) {
             Verb v;
             if (word.getVerb() == null) {
                 v = new Verb();
             } else v = word.getVerb();
-            v.setMeaning(getMeaning(v.getMeaning()));
-            v.setSentence(getSentence(v.getSentence()));
+            v.setSentence(readSentence(v.getSentence()));
             word.setVerb(v);
         } else if ("--synonymous".equals(kindOfWord) || "-s".equals(kindOfWord)) {
             Synonymous s;
             if (word.getSynonymous() == null) {
                 s = new Synonymous();
             } else s = word.getSynonymous();
-            s.setWord(getMeaning(s.getWord()));
+            s.setWord(readWord(s.getWord()));
             word.setSynonymous(s);
         }
         return word;
     }
 
-    private static List<Sentence> getSentence(List<Sentence> sentence) {
+    private static List<Sentence> readSentence(List<Sentence> sentence) {
         Sentence sentences = new Sentence();
         while (true) {
             sentences = new Sentence();
+            System.out.println("Input meaning:");
+            sentences.setMeaning(GenericMethod.inputString());
             System.out.println("Input sentence:");
             sentences.setSentence(GenericMethod.inputString());
             System.out.println("Input sentence meaning:");
@@ -87,7 +86,7 @@ public class Define {
         return sentence;
     }
 
-    private static List<String> getMeaning(List<String> mean) {
+    private static List<String> readWord(List<String> mean) {
         while (true) {
             System.out.println("Input meaning:");
             mean.add(GenericMethod.inputString());

@@ -8,19 +8,10 @@ public class Adjective implements Serializable {
 
     private static final long serialVersionUID = 1L;
     final String adjectiveVN = "Tính từ";
-    private List<String> meaning;
-    private List<Sentence> sentence;
+    private List<Sentence> sentence = new ArrayList<>();
 
     public String getAdjectiveVN() {
         return adjectiveVN;
-    }
-
-    public List<String> getMeaning() {
-        return meaning;
-    }
-
-    public void setMeaning(List<String> meaning) {
-        this.meaning = meaning;
     }
 
     public List<Sentence> getSentence() {
