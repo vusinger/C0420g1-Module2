@@ -2,7 +2,6 @@ package common;
 
 import models.Word;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class ArrayMethod {

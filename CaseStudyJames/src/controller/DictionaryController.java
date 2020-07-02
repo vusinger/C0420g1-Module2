@@ -1,5 +1,6 @@
 package controller;
 
+import common.ExportFile;
 import common.GenericMethod;
 import models.Request;
 
@@ -11,7 +12,7 @@ public class DictionaryController {
 
     private static void main() {
         System.out.println("-------------- Dictionary ---------------");
-        System.out.println("Action: lookup/define/drop ....");
+        System.out.println("Action: lookup/define/drop/export ....");
         System.out.println("Input your command:");
         String input = GenericMethod.inputString();
         Request request = null;
@@ -40,6 +41,8 @@ public class DictionaryController {
             Define.defineMethod(kindOfWord, keyword);
         } else if ("drop".equals(action)) {
             Drop.dropMethod(keyword);
+        } else if ("export".equals(action))  {
+            ExportFile.export(keyword);
         }
     }
 }

@@ -4,7 +4,6 @@ import common.ArrayMethod;
 import common.GenericMethod;
 import models.*;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class Define {
@@ -74,23 +73,30 @@ public class Define {
         Sentence sentences = new Sentence();
         while (true) {
             sentences = new Sentence();
-            System.out.println("Input meaning:");
+            System.out.println("Input meaning(Input \"exit!\" to escape ):");
             sentences.setMeaning(GenericMethod.inputString());
-            System.out.println("Input sentence:");
+            if ("exit!".equals(sentences.getMeaning())) break;
+
+            System.out.println("Input sentence(Input \"exit!\" to escape ):");
             sentences.setSentence(GenericMethod.inputString());
-            System.out.println("Input sentence meaning:");
+            if ("exit!".equals(sentences.getSentence())) break;
+
+            System.out.println("Input sentence meaning(Input \"exit!\" to escape ):");
             sentences.setSentenceMeaning(GenericMethod.inputString());
+            if ("exit!".equals(sentences.getSentenceMeaning())) break;
+
             sentence.add(sentences);
-            if (!GenericMethod.checkContinue()) break;
         }
         return sentence;
     }
 
     private static List<String> readWord(List<String> mean) {
+        String str;
         while (true) {
-            System.out.println("Input meaning:");
-            mean.add(GenericMethod.inputString());
-            if (!GenericMethod.checkContinue()) break;
+            System.out.println("Input meaning(Input \"exit!\" to escape ):");
+            str = GenericMethod.inputString();
+            if ("exit!".equals(str)) break;
+            mean.add(str);
         }
         return mean;
     }

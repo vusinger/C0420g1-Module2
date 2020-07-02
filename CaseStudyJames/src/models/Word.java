@@ -74,37 +74,56 @@ public class Word implements Serializable {
     }
 
 //  -----------------------------------------------------------------------------------------
-    public void showWord() {
-        System.out.print("@" + word);
-        if (this.pronoun.getValue() != null) System.out.print(" " + this.pronoun.getValue());
-        System.out.println();
+    public String showWord() {
+        String result = "";
+        String str = "";
 
-        if (adjective != null) {
-            System.out.println("---------*" + adjective.getAdjectiveVN()+"---------");
-            showSentence(adjective.getSentence());
+        result = "@" + word;
+        if (this.pronoun.getValue() != null) {
+            result += " " + this.pronoun.getValue();
         }
-        if (noun != null) {
-            System.out.println("---------*" + noun.getNounVN()+"---------");
-            showSentence(noun.getSentence());
+        result += "\n";
+
+        if ((str = showSentence(adjective.getSentence())) != null) {
+            str = "---------*" + adjective.getAdjectiveVN() + "---------\n" + str;
+            result += str;
         }
-        if (verb != null) {
-            System.out.println("---------*" + verb.getVerbVN()+"---------");
-            showSentence(verb.getSentence());
+
+        if ((str = showSentence(noun.getSentence())) != null) {
+            str = "---------*" + noun.getNounVN() + "---------\n" + str;
+            result += str;
         }
-        if (synonymous != null) {
-            System.out.println("---------*" + synonymous.getSynonymousVN()+"---------");
-            for (String obj : synonymous.getWord()) {
-                System.out.println("-" + obj);
-            }
+        if ((str = showSentence(verb.getSentence())) != null) {
+            str = "---------*" + verb.getVerbVN() + "---------\n" + str;
+            result += str;
         }
+        str = "";
+        for (String obj : synonymous.getWord()) {
+            str += "-" + obj + "\n";
+        }
+        if (!"".equals(str)) {
+            str = "---------*" + synonymous.getSynonymousVN() + "--------- \n" + str;
+            result += str;
+        }
+        return result;
     }
 
-    private void showSentence(List<Sentence> sentence) {
+    private String showSentence(List<Sentence> sentence) {
+        String str = "";
         for (Sentence obj : sentence) {
-            if (obj.getMeaning() != null&&!"".equals(obj.getMeaning().trim())) System.out.println("-" + obj.getMeaning());
-            if (obj.getSentence() != null&&!"".equals(obj.getSentence().trim())) System.out.print("=" + obj.getSentence());
-            if (obj.getSentenceMeaning() != null&&!"".equals(obj.getSentenceMeaning().trim())) System.out.println("+" + obj.getSentenceMeaning());
+            if (obj.getMeaning() != null && !"".equals(obj.getMeaning().trim())) {
+                str += "\n-" + obj.getMeaning() + "\n";
+            }
+            if (obj.getSentence() != null && !"".equals(obj.getSentence().trim())) {
+                str += "=" + obj.getSentence();
+            }
+            if (obj.getSentenceMeaning() != null && !"".equals(obj.getSentenceMeaning().trim())) {
+                str += "+" + obj.getSentenceMeaning() + "\n";
+            }
         }
+        if ("".equals(str)) {
+            return null;
+        } else return str;
     }
 
 //    -----------------------------------------------------------------
