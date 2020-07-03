@@ -26,7 +26,7 @@ public class DictionaryController {
                 input = GenericMethod.inputString();
             }
         }
-        if (!"exit".equals(input)) {
+        if (!"exit!".equals(input)) {
             process(request);
         } else return;
         main();

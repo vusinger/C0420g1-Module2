@@ -42,6 +42,10 @@ public class ExportFile {
         String name = getName(path);
         File dirNew = new File(dir);
         dirNew.mkdir();
+        File fileNew = new File(dir,name);
+        if (!fileNew.exists()) {
+            fileNew.createNewFile();
+        }
         FileWriter fileWriter = new FileWriter(path,true);
         BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
         bufferedWriter.write(word);
