@@ -22,22 +22,22 @@ public class ShowManager {
         int choose = GenericMethod.inputNumber();
         switch (choose) {
             case 1:
-                showAll(GenerateFile.getVillaArray(), "Villa");
+                showAll(GenerateFile.getArray("Villa"), "Villa");
                 break;
             case 2:
-                showAll(GenerateFile.getHouseArray(), "House");
+                showAll(GenerateFile.getArray("House"), "House");
                 break;
             case 3:
-                showAll(GenerateFile.getRoomArray(), "Room");
+                showAll(GenerateFile.getArray("Room"), "Room");
                 break;
             case 4:
-                showNameNotDuplicate(GenerateFile.getVillaArray(), "Villa");
+                showNameNotDuplicate(GenerateFile.getArray("Villa"), "Villa");
                 break;
             case 5:
-                showNameNotDuplicate(GenerateFile.getHouseArray(), "House");
+                showNameNotDuplicate(GenerateFile.getArray("House"), "House");
                 break;
             case 6:
-                showNameNotDuplicate(GenerateFile.getRoomArray(), "Room");
+                showNameNotDuplicate(GenerateFile.getArray("Room"), "Room");
                 break;
             case 7:
             case 8:
@@ -51,13 +51,7 @@ public class ShowManager {
     public static void showAll(List<Services> objArray, String name) {
         System.out.println("-------------------- Show all " + name + " ---------------------");
         for (Services obj : objArray) {
-            if ("Villa".equals(name)) {
-                ((Villa) obj).showInfo();
-            } else if ("House".equals(name)) {
-                ((House) obj).showInfo();
-            } else if ("Room".equals(name)) {
-                ((Room) obj).showInfo();
-            }
+                obj.showInfo();
         }
     }
 

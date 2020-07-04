@@ -138,19 +138,10 @@ public class GenericMethod {
 
     /**
      * Luu object moi vao mang
-     * @param name :Villa House Room Customer
-     * @param obj : new object
      */
-    public static void saveToArray(String name, Object obj) {
-        if ("Customer".equals(name)) {
-            List<Customer> array = GenerateFile.getCustomerArray();
-            array.add((Customer) obj);
-            GenerateFile.setCustomerArray(array);
-        } else {
-            List<Services> array = GenerateFile.getArray(name);
-            array.add((Services) obj);
+    public static <E> void saveToArray(List<E> array,E obj,String name) {
+            array.add(obj);
             GenerateFile.setArray(array,name);
-        }
     }
 
 //-----------------------------------------------------------------------

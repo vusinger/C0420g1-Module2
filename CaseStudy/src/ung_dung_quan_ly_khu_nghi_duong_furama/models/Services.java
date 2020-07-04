@@ -85,5 +85,5 @@ public abstract class Services implements Serializable {
 
     public Services() {
     }
-    abstract void showInfo();
+    public abstract void showInfo();
 }

@@ -31,9 +31,9 @@ public class GenerateFile {
             GenerateDataFile();
         } catch (IOException e) {
             ResetDataFile();
-            e.printStackTrace();
+            System.out.println("File bi loi!!!");
         } catch (ClassNotFoundException e) {
-            e.printStackTrace();
+            System.out.println("Khong tim thay file!!");
         }
     }
 //  ---------------------------------------------------------------------------
@@ -120,17 +120,19 @@ public class GenerateFile {
      * @param name Villa House Room
      * @return List<Service>
      */
-    public static List<Services> getArray(String name) {
-        if ("Villa".equals(name)) return villaArray;
-        else if ("House".equals(name)) return houseArray;
-        else if ("Room".equals(name)) return roomArray;
+    public static <E> List<E> getArray(String name) {
+        if ("Villa".equals(name)) return (List<E>) villaArray;
+        else if ("House".equals(name)) return (List<E>) houseArray;
+        else if ("Room".equals(name)) return (List<E>) roomArray;
+        else if ("Customer".equals(name)) return (List<E>) customerArray;
         return null;
     }
 
-    public static void setArray(List<Services> array, String name) {
-        if ("Villa".equals(name)) GenerateFile.villaArray = array;
-        else if ("House".equals(name)) GenerateFile.houseArray = array;
-        else if ("Room".equals(name)) GenerateFile.roomArray = array;
+    public static <E> void setArray(List<E> array, String name) {
+        if ("Villa".equals(name)) villaArray = (List<Services>) array;
+        else if ("House".equals(name)) houseArray = (List<Services>) array;
+        else if ("Room".equals(name)) roomArray = (List<Services>) array;
+        else if ("Customer".equals(name)) customerArray = (List<Customer>) array;
     }
 //  ---------------------------------------------------------------------------
 }

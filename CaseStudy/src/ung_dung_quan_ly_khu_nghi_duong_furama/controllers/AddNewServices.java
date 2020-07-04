@@ -25,13 +25,13 @@ public class AddNewServices {
         int choose = GenericMethod.inputNumber();
         switch (choose) {
             case 1:
-                addBuilding(GenerateFile.getVillaArray(), "Villa");
+                addBuilding(GenerateFile.getArray("Villa"), "Villa");
                 break;
             case 2:
-                addBuilding(GenerateFile.getHouseArray(), "House");
+                addBuilding(GenerateFile.getArray("House"), "House");
                 break;
             case 3:
-                addBuilding(GenerateFile.getRoomArray(), "Room");
+                addBuilding(GenerateFile.getArray("Room"), "Room");
                 break;
             case 4:
             case 5:
@@ -135,7 +135,7 @@ public class AddNewServices {
         }
 
         /*Save to file*/
-        GenericMethod.saveToArray(name,building);
+        GenericMethod.saveToArray(objArray,building,name);
         GenericMethod.convertToFile(name);
     }
 //  ---------------------------------------------------------------------------

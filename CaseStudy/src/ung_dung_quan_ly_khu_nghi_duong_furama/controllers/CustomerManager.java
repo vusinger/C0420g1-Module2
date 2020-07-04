@@ -1,5 +1,6 @@
 package ung_dung_quan_ly_khu_nghi_duong_furama.controllers;
 
+import ung_dung_quan_ly_khu_nghi_duong_furama.common.GenerateFile;
 import ung_dung_quan_ly_khu_nghi_duong_furama.common.GenericMethod;
 import ung_dung_quan_ly_khu_nghi_duong_furama.common.Regex;
 import ung_dung_quan_ly_khu_nghi_duong_furama.models.Customer;
@@ -86,7 +87,7 @@ public class CustomerManager {
         customer.setAddress(customerAddress);
 
         /*Save to file and array*/
-        GenericMethod.saveToArray("Customer",customer);
+        GenericMethod.saveToArray(GenerateFile.getArray("Customer"),customer,"Customer");
         GenericMethod.convertToFile("Customer");
     }
 }
