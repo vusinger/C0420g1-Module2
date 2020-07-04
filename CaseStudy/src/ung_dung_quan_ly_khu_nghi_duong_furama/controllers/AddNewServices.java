@@ -53,7 +53,7 @@ public class AddNewServices {
         Services building = null;
 
         /*Tao object new*/
-        building = GenericMethod.genarateObject(name);
+        building = GenericMethod.generateObject(name);
 
         /*Set ID to array*/
         building.setId(GenericMethod.findMax(name) + 1);

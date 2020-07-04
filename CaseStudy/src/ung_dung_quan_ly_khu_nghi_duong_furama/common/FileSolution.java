@@ -8,26 +8,35 @@ public class FileSolution<E> {
     private String name;
     private String path;
     private List<E> objectArray;
+//---------------------------------------------------------------------------------------------
 
-    public 8FileSolution(String name, String path, List<E> objectArray) {
+    public FileSolution(String name, String path, List<E> objectArray) {
         this.name = name+".csv";
         this.path = path;
         this.objectArray = objectArray;
     }
+//---------------------------------------------------------------------------------------------
 
+    /**
+     * Khoi tao file
+     * @throws IOException
+     */
     public void generateFile() throws IOException {
         File dir = new File("src/ung_dung_quan_ly_khu_nghi_duong_furama/data/");
         dir.mkdir();
         File file = new File("src/ung_dung_quan_ly_khu_nghi_duong_furama/data/", name);
         if (!file.exists()) {
-            FileOutputStream fileOutputStream = new FileOutputStream(path);
-            ObjectOutputStream objectOutputStream = new ObjectOutputStream(fileOutputStream);
-            objectOutputStream.writeObject(objectArray);
-            objectOutputStream.close();
-            fileOutputStream.close();
+            convertToFile();
         }
     }
+//---------------------------------------------------------------------------------------------
 
+    /**
+     * Get Object array tu file
+     * @return
+     * @throws IOException
+     * @throws ClassNotFoundException
+     */
     public List<E> convertData() throws IOException, ClassNotFoundException {
         FileInputStream fileInputStream = new FileInputStream(path);
         ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream);
@@ -36,7 +45,11 @@ public class FileSolution<E> {
         fileInputStream.close();
         return objectArray;
     }
+//---------------------------------------------------------------------------------------------
 
+    /**
+     * Luu objectArray vao file
+     */
     public void convertToFile() {
         try {
             FileOutputStream fileOutputStream = new FileOutputStream(path);

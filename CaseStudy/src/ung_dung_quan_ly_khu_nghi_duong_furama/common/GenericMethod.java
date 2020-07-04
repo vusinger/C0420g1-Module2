@@ -67,9 +67,8 @@ public class GenericMethod {
     private static int findMaxService(String name) {
         List<Services> services = GenerateFile.getArray(name);
         int maxId = 0;
-        if(!services.isEmpty()) maxId = services.get(0).getId();
         for (Services obj:services) {
-            if (obj.getId()>maxId) maxId = obj.getId();
+            maxId = Math.max(maxId, obj.getId());
         }
         return maxId;
     }
@@ -77,19 +76,20 @@ public class GenericMethod {
     private static int findMaxCustomer() {
         List<Customer> customer = GenerateFile.getCustomerArray();
         int maxId = 0;
-        if(!customer.isEmpty()) maxId = customer.get(0).getId();
         for (Customer obj:customer) {
-            if (obj.getId()>maxId) maxId = obj.getId();
+            maxId = Math.max(maxId, obj.getId());
         }
         return maxId;
     }
 //--------------------------------------------------------------------
+
     /**
      * Tao object new cho Service
+     *
      * @param name:Villa House Room
      * @return new object
      */
-    public static Services genarateObject(String name) {
+    public static Services generateObject(String name) {
         if ("Villa".equals(name)) {
             return new Villa();
         } else if ("House".equals(name)) {
@@ -142,24 +142,17 @@ public class GenericMethod {
      * @param obj : new object
      */
     public static void saveToArray(String name, Object obj) {
-        if ("Villa".equals(name)) {
-            List<Services> array = GenerateFile.getVillaArray();
-            array.add((Villa) obj);
-            GenerateFile.setVillaArray(array);
-        } else if ("House".equals(name)) {
-            List<Services> array = GenerateFile.getHouseArray();
-            array.add((House) obj);
-            GenerateFile.setHouseArray(array);
-        } else if ("Room".equals(name)) {
-            List<Services> array = GenerateFile.getRoomArray();
-            array.add((Room) obj);
-            GenerateFile.setRoomArray(array);
-        } else if ("Customer".equals(name)) {
+        if ("Customer".equals(name)) {
             List<Customer> array = GenerateFile.getCustomerArray();
             array.add((Customer) obj);
             GenerateFile.setCustomerArray(array);
+        } else {
+            List<Services> array = GenerateFile.getArray(name);
+            array.add((Services) obj);
+            GenerateFile.setVillaArray(array);
         }
     }
+
 //-----------------------------------------------------------------------
 
 }
