@@ -60,25 +60,10 @@ public class GenerateFile {
         return employeeArray;
     }
 
-    public static void setVillaArray(List<Services> villaArray) {
-        GenerateFile.villaArray = villaArray;
-    }
-
-    public static void setHouseArray(List<Services> houseArray) {
-        GenerateFile.houseArray = houseArray;
-    }
-
-    public static void setRoomArray(List<Services> roomArray) {
-        GenerateFile.roomArray = roomArray;
-    }
-
     public static void setCustomerArray(List<Customer> customerArray) {
         GenerateFile.customerArray = customerArray;
     }
 
-    public static void setEmployeeArray(Map<Integer, Employee> employeeArray) {
-        GenerateFile.employeeArray = employeeArray;
-    }
 //  ---------------------------------------------------------------------------
 
     /**

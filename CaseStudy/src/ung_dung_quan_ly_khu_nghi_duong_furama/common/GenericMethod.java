@@ -149,7 +149,7 @@ public class GenericMethod {
         } else {
             List<Services> array = GenerateFile.getArray(name);
             array.add((Services) obj);
-            GenerateFile.setVillaArray(array);
+            GenerateFile.setArray(array,name);
         }
     }
 
