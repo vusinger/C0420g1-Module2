@@ -1,7 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="67dcdb42-1282-4107-8e5e-f6240f0dc102" name="Default Changelist" comment="" />
+    <list default="true" id="55b961d3-4136-438e-addf-1a8c2fc73e4a" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../CaseStudy/out/production/CaseStudy/ung_dung_quan_ly_khu_nghi_duong_furama/data/Customer.csv" beforeDir="false" afterPath="$PROJECT_DIR$/../../CaseStudy/out/production/CaseStudy/ung_dung_quan_ly_khu_nghi_duong_furama/data/Customer.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../CaseStudy/out/production/CaseStudy/ung_dung_quan_ly_khu_nghi_duong_furama/data/House.csv" beforeDir="false" afterPath="$PROJECT_DIR$/../../CaseStudy/out/production/CaseStudy/ung_dung_quan_ly_khu_nghi_duong_furama/data/House.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../CaseStudy/out/production/CaseStudy/ung_dung_quan_ly_khu_nghi_duong_furama/data/Room.csv" beforeDir="false" afterPath="$PROJECT_DIR$/../../CaseStudy/out/production/CaseStudy/ung_dung_quan_ly_khu_nghi_duong_furama/data/Room.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../CaseStudy/src/ung_dung_quan_ly_khu_nghi_duong_furama/data/Customer.csv" beforeDir="false" afterPath="$PROJECT_DIR$/../../CaseStudy/src/ung_dung_quan_ly_khu_nghi_duong_furama/data/Customer.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../CaseStudy/src/ung_dung_quan_ly_khu_nghi_duong_furama/data/House.csv" beforeDir="false" afterPath="$PROJECT_DIR$/../../CaseStudy/src/ung_dung_quan_ly_khu_nghi_duong_furama/data/House.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../CaseStudy/src/ung_dung_quan_ly_khu_nghi_duong_furama/data/Room.csv" beforeDir="false" afterPath="$PROJECT_DIR$/../../CaseStudy/src/ung_dung_quan_ly_khu_nghi_duong_furama/data/Room.csv" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -10,7 +18,7 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../.." />
   </component>
-  <component name="ProjectId" id="1e1VsSkvBW4w1mecNsWuaOQh8Mu" />
+  <component name="ProjectId" id="1eE1E0NEjWQ4dYPztxkEYgh7grk" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
@@ -21,20 +29,18 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
   </component>
   <component name="SvnConfiguration">
     <configuration />
   </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="67dcdb42-1282-4107-8e5e-f6240f0dc102" name="Default Changelist" comment="" />
-      <created>1593489292203</created>
+      <changelist id="55b961d3-4136-438e-addf-1a8c2fc73e4a" name="Default Changelist" comment="" />
+      <created>1593871822279</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1593489292203</updated>
-      <workItem from="1593489293515" duration="3000" />
-      <workItem from="1593700625861" duration="732000" />
+      <updated>1593871822279</updated>
+      <workItem from="1593871823589" duration="447000" />
     </task>
     <servers />
   </component>

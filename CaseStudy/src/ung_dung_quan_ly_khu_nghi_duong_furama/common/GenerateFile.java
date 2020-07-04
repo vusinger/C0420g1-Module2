@@ -1,6 +1,8 @@
 package ung_dung_quan_ly_khu_nghi_duong_furama.common;
 
-import ung_dung_quan_ly_khu_nghi_duong_furama.models.*;
+import ung_dung_quan_ly_khu_nghi_duong_furama.models.Customer;
+import ung_dung_quan_ly_khu_nghi_duong_furama.models.Employee;
+import ung_dung_quan_ly_khu_nghi_duong_furama.models.Services;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -20,8 +22,8 @@ public class GenerateFile {
     static List<Customer> customerArray = new ArrayList<>();
     static Map<Integer, Employee> employeeArray = new HashMap<>();
 
-    public GenerateFile() {
-        this.getData();
+    static {
+        getData();
     }
 
     public static void getData() {
