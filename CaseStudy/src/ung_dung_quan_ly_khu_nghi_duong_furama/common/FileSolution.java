@@ -26,7 +26,7 @@ public class FileSolution<E> {
         dir.mkdir();
         File file = new File("src/ung_dung_quan_ly_khu_nghi_duong_furama/data/", name);
         if (!file.exists()) {
-            convertToFile();
+            convertToFile(objectArray);
         }
     }
 //---------------------------------------------------------------------------------------------
@@ -50,7 +50,7 @@ public class FileSolution<E> {
     /**
      * Luu objectArray vao file
      */
-    public void convertToFile() {
+    public <E>void convertToFile(List<E> arr) {
         try {
             FileOutputStream fileOutputStream = new FileOutputStream(path);
             ObjectOutputStream objectOutputStream = new ObjectOutputStream(fileOutputStream);

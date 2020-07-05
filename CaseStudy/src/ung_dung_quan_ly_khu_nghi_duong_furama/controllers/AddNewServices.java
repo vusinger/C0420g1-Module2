@@ -136,7 +136,7 @@ public class AddNewServices {
 
         /*Save to file*/
         GenericMethod.saveToArray(objArray,building,name);
-        GenericMethod.convertToFile(name);
+        GenericMethod.convertToFile(name,objArray);
     }
 //  ---------------------------------------------------------------------------
 

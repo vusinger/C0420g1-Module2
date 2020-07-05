@@ -74,7 +74,7 @@ public class GenericMethod {
     }
 
     private static int findMaxCustomer() {
-        List<Customer> customer = GenerateFile.getCustomerArray();
+        List<Customer> customer = GenerateFile.getArray("Customer");
         int maxId = 0;
         for (Customer obj:customer) {
             maxId = Math.max(maxId, obj.getId());
@@ -117,22 +117,12 @@ public class GenericMethod {
 
     /**
      * Ghi vao file csv
+     *
      * @param name :Villa House Room Customer
      */
-    public static void convertToFile(String name) {
-        if ("Villa".equals(name)) {
-            FileSolution<Services> file = new FileSolution<>(name, GenericMethod.getPath(name), GenerateFile.getVillaArray());
-            file.convertToFile();
-        } else if ("House".equals(name)) {
-            FileSolution<Services> file = new FileSolution<>(name, GenericMethod.getPath(name), GenerateFile.getHouseArray());
-            file.convertToFile();
-        } else if ("Room".equals(name)) {
-            FileSolution<Services> file = new FileSolution<>(name, GenericMethod.getPath(name), GenerateFile.getRoomArray());
-            file.convertToFile();
-        } else if ("Customer".equals(name)) {
-            FileSolution<Customer> file = new FileSolution<>(name, GenericMethod.getPath(name), GenerateFile.getCustomerArray());
-            file.convertToFile();
-        }
+    public static <E> void convertToFile(String name, List<E> arr) {
+        FileSolution<E> file = new FileSolution<E>(name, GenericMethod.getPath(name), arr);
+        file.convertToFile(arr);
     }
 //-----------------------------------------------------------------------
 

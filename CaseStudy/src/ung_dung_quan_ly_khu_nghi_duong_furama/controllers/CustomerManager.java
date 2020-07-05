@@ -88,6 +88,6 @@ public class CustomerManager {
 
         /*Save to file and array*/
         GenericMethod.saveToArray(GenerateFile.getArray("Customer"),customer,"Customer");
-        GenericMethod.convertToFile("Customer");
+        GenericMethod.convertToFile("Customer",GenerateFile.getArray("Customer"));
     }
 }

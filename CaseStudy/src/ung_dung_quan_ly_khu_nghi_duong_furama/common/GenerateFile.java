@@ -36,37 +36,16 @@ public class GenerateFile {
             System.out.println("Khong tim thay file!!");
         }
     }
-//  ---------------------------------------------------------------------------
-
-    /**
-     * Getter va setter
-     * @return ListArray
-     */
-    public static List<Services> getVillaArray() {
-        return villaArray;
-    }
-
-    public static List<Services> getHouseArray() {
-        return houseArray;
-    }
-
-    public static List<Services> getRoomArray() {
-        return roomArray;
-    }
-
-    public static List<Customer> getCustomerArray() {
-        return customerArray;
-    }
 
     public static Map<Integer, Employee> getEmployeeArray() {
         return employeeArray;
     }
 
-    public static void setCustomerArray(List<Customer> customerArray) {
-        GenerateFile.customerArray = customerArray;
+    public static void setEmployeeArray(Map<Integer, Employee> employeeArray) {
+        GenerateFile.employeeArray = employeeArray;
     }
 
-//  ---------------------------------------------------------------------------
+    //  ---------------------------------------------------------------------------
 
     /**
      * Khoi tao mang doc tu file csv
@@ -74,42 +53,40 @@ public class GenerateFile {
      * @throws ClassNotFoundException
      */
     public static void GenerateDataFile() throws IOException, ClassNotFoundException {
-        FileSolution<Services> file1 = new FileSolution<>("Villa", GenericMethod.getPath("Villa"), villaArray);
-        file1.generateFile();
-        villaArray = file1.convertData();
-        FileSolution<Services> file2 = new FileSolution<>("House", GenericMethod.getPath("House"), houseArray);
-        file2.generateFile();
-        houseArray = file2.convertData();
-        FileSolution<Services> file3 = new FileSolution<>("Room", GenericMethod.getPath("Room"), roomArray);
-        file3.generateFile();
-        roomArray = file3.convertData();
-        FileSolution<Customer> file4 = new FileSolution<>("Customer", GenericMethod.getPath("Customer"), customerArray);
-        file4.generateFile();
-        customerArray = file4.convertData();
+        villaArray = generateData("Villa",villaArray);
+        houseArray = generateData("House",houseArray);
+        roomArray = generateData("Room",roomArray);
+        customerArray = generateData("Customer",customerArray);
         FileUltilEmployee file5 = new FileUltilEmployee(GenericMethod.getPath("Employee"), employeeArray);
         employeeArray = file5.convertData();
     }
+
+    private static <E> List<E> generateData(String name, List<E> arr) throws IOException, ClassNotFoundException {
+        FileSolution<E> file = new FileSolution<>(name,GenericMethod.getPath(name),arr);
+        file.generateFile();
+        arr = file.convertData();
+        return arr;
+    }
+
 //  ---------------------------------------------------------------------------
 
     /**
      * Reset lai file csv tu mang
      */
     public static void ResetDataFile() {
-        villaArray.clear();
-        houseArray.clear();
-        roomArray.clear();
-        customerArray.clear();
+        resetFile(villaArray,"Villa");
+        resetFile(houseArray,"House");
+        resetFile(roomArray,"Room");
+        resetFile(customerArray,"Customer");
         employeeArray.clear();
-        FileSolution<Services> file1 = new FileSolution<>("Villa", GenericMethod.getPath("Villa"), villaArray);
-        file1.convertToFile();
-        FileSolution<Services> file2 = new FileSolution<>("House", GenericMethod.getPath("House"), houseArray);
-        file2.convertToFile();
-        FileSolution<Services> file3 = new FileSolution<>("Room", GenericMethod.getPath("Room"), roomArray);
-        file3.convertToFile();
-        FileSolution<Customer> file4 = new FileSolution<>("Customer", GenericMethod.getPath("Customer"), customerArray);
-        file4.convertToFile();
         FileUltilEmployee file5 = new FileUltilEmployee(GenericMethod.getPath("Employee"), employeeArray);
         file5.convertToFile();
+    }
+
+    private static <E> void resetFile(List<E> arr,String name) {
+        arr.clear();
+        FileSolution<E> file = new FileSolution<E>(name, GenericMethod.getPath(name), arr);
+        file.convertToFile(arr);
     }
 
 

@@ -30,19 +30,19 @@ public class Booking {
         }
         switch (choose) {
             case 1:
-                ShowManager.showAll(GenerateFile.getVillaArray(), "Villa");
+                ShowManager.showAll(GenerateFile.getArray("Villa"), "Villa");
                 System.out.println("Chon ID Villa:");
                 idRent = GenericMethod.inputNumber();
                 booking("Villa", idCustomer, idRent);
                 break;
             case 2:
-                ShowManager.showAll(GenerateFile.getHouseArray(), "House");
+                ShowManager.showAll(GenerateFile.getArray("House"), "House");
                 System.out.println("Chon ID House:");
                 idRent = GenericMethod.inputNumber();
                 booking("House", idCustomer, idRent);
                 break;
             case 3:
-                ShowManager.showAll(GenerateFile.getRoomArray(), "Room");
+                ShowManager.showAll(GenerateFile.getArray("Room"), "Room");
                 System.out.println("Chon ID Room:");
                 idRent = GenericMethod.inputNumber();
                 booking("Room", idCustomer, idRent);
@@ -64,14 +64,14 @@ public class Booking {
      * @param idRent : id array building
      */
     private static void booking(String name, int idCustomer, int idRent) {
-        List<Customer> customerArray = GenerateFile.getCustomerArray();
-        List<Services> villaArray = GenerateFile.getVillaArray();
-        List<Services> houseArray = GenerateFile.getHouseArray();
-        List<Services> roomArray = GenerateFile.getRoomArray();
+        List<Customer> customerArray = GenerateFile.getArray("Customer");
+        List<Services> villaArray = GenerateFile.getArray("Villa");
+        List<Services> houseArray = GenerateFile.getArray("House");
+        List<Services> roomArray = GenerateFile.getArray("Room");
         boolean check1 = false;
         boolean check2 = false;
         int index1 = 0;
-        for (Customer customer : GenerateFile.getCustomerArray()) {
+        for (Customer customer : customerArray) {
             if (customer.getId() == idCustomer) {
                 check1 = true;
                 break;
@@ -88,7 +88,7 @@ public class Booking {
         }
         if (check1&&check2) {
             FileSolution<Customer> fileCustomer = new FileSolution<>("Customer", GenericMethod.getPath("Customer"), customerArray);
-            fileCustomer.convertToFile();
+            fileCustomer.convertToFile(customerArray);
         }
     }
 //  ---------------------------------------------------------------------------
@@ -103,7 +103,7 @@ public class Booking {
         }
         if (check1&&check2) {
             customerArray.get(index1).setUseService(Array.get(index2));
-            GenerateFile.setCustomerArray(customerArray);
+            GenerateFile.setArray(customerArray,"Customer");
         }
         return check2;
     }

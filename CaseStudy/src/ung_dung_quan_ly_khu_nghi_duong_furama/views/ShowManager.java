@@ -79,7 +79,7 @@ public class ShowManager {
 
     public static void showInformationCustomers() {
         System.out.println("-------------------- Show All Customer ---------------------");
-        List<Customer> arr = GenerateFile.getCustomerArray();
+        List<Customer> arr = GenerateFile.getArray("Customer");
         Collections.sort(arr, new CustomerComparator());
         for (Customer obj : arr) {
             obj.showInfo();
