@@ -61,9 +61,8 @@ public class ShowManager {
         for (Services obj : objArray) {
             hashMap.put(obj.getServiceName(), obj);
         }
-        Set<String> set = hashMap.keySet();
         int index = 0;
-        for (String key : set) {
+        for (String key : hashMap.keySet()) {
             index++;
             System.out.println(index + ". " + key + " " + name + " ");
         }

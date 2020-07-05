@@ -56,31 +56,24 @@ public class GenericMethod {
 
     /**
      * Tim gia tri MaxID trong mang
+     *
      * @param name:Villa House Room Customer
      * @return maxid
      */
-    public static int findMax(String name) {
-        if ("Customer".equals(name)) return findMaxCustomer();
-        else return findMaxService(name);
-    }
-
-    private static int findMaxService(String name) {
-        List<Services> services = GenerateFile.getArray(name);
+    public static <E> int findMax(String name, List<E> arr) {
         int maxId = 0;
-        for (Services obj:services) {
-            maxId = Math.max(maxId, obj.getId());
+        if ("Customer".equals(name)) {
+            for (Customer obj : (List<Customer>) arr) {
+                maxId = Math.max(maxId, obj.getId());
+            }
+        } else {
+            for (Services obj : (List<Services>) arr) {
+                maxId = Math.max(maxId, obj.getId());
+            }
         }
         return maxId;
     }
 
-    private static int findMaxCustomer() {
-        List<Customer> customer = GenerateFile.getArray("Customer");
-        int maxId = 0;
-        for (Customer obj:customer) {
-            maxId = Math.max(maxId, obj.getId());
-        }
-        return maxId;
-    }
 //--------------------------------------------------------------------
 
     /**

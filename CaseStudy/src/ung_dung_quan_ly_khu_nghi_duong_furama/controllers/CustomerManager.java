@@ -12,7 +12,7 @@ public class CustomerManager {
         Customer customer = new Customer();
 
         /* Set ID cho Object*/
-        customer.setId(GenericMethod.findMax("Customer") + 1);
+        customer.setId(GenericMethod.findMax("Customer",GenerateFile.getArray("Customer")) + 1);
 
         /*Input customer name*/
         System.out.println("Input Customer Name:");

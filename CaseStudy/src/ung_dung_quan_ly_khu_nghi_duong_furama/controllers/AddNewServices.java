@@ -56,7 +56,7 @@ public class AddNewServices {
         building = GenericMethod.generateObject(name);
 
         /*Set ID to array*/
-        building.setId(GenericMethod.findMax(name) + 1);
+        building.setId(GenericMethod.findMax(name,objArray) + 1);
 
         /*Service Code*/
         System.out.print(name + " Service Code:");

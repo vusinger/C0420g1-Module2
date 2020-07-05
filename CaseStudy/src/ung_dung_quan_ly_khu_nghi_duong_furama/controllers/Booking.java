@@ -65,46 +65,27 @@ public class Booking {
      */
     private static void booking(String name, int idCustomer, int idRent) {
         List<Customer> customerArray = GenerateFile.getArray("Customer");
-        List<Services> villaArray = GenerateFile.getArray("Villa");
-        List<Services> houseArray = GenerateFile.getArray("House");
-        List<Services> roomArray = GenerateFile.getArray("Room");
-        boolean check1 = false;
-        boolean check2 = false;
-        int index1 = 0;
+        List<Services> array = GenerateFile.getArray(name);
         for (Customer customer : customerArray) {
             if (customer.getId() == idCustomer) {
-                check1 = true;
+                Services services = isCheck(idRent,array);
+                if (services!=null) {
+                    customer.setUseService(services);
+                    FileSolution<Customer> fileCustomer = new FileSolution<>("Customer", GenericMethod.getPath("Customer"), customerArray);
+                    fileCustomer.convertToFile(customerArray);
+                }
                 break;
             }
-            index1++;
         }
-        int index2 = 0;
-        if ("Villa".equals(name)) {
-            check2 = isCheck2(idRent, customerArray, villaArray, check1, false, index1, index2);
-        } else if ("House".equals(name)) {
-            check2 = isCheck2(idRent, customerArray, houseArray, check1, false, index1, index2);
-        } else if ("Room".equals(name)) {
-            check2 = isCheck2(idRent, customerArray, roomArray, check1, false, index1, index2);
+    }
+
+    private static Services isCheck(int idRent, List<Services> array) {
+        for (Services services:array) {
+            if (services.getId()==idRent) return services;
         }
-        if (check1&&check2) {
-            FileSolution<Customer> fileCustomer = new FileSolution<>("Customer", GenericMethod.getPath("Customer"), customerArray);
-            fileCustomer.convertToFile(customerArray);
-        }
+        return null;
     }
 //  ---------------------------------------------------------------------------
 
-    private static boolean isCheck2(int idRent, List<Customer> customerArray, List<Services> Array, boolean check1, boolean check2, int index1, int index2) {
-        for (Services obj : Array) {
-            if (obj.getId() == idRent) {
-                check2 = true;
-                break;
-            }
-            index2++;
-        }
-        if (check1&&check2) {
-            customerArray.get(index1).setUseService(Array.get(index2));
-            GenerateFile.setArray(customerArray,"Customer");
-        }
-        return check2;
-    }
+
 }
