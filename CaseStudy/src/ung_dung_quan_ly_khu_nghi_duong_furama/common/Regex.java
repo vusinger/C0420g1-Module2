@@ -38,27 +38,58 @@ public class Regex {
     }
 
     public static boolean checkAccompaniedService(String inputString) {
-        return Pattern.matches(ACCOMPANIED_SERVICE, inputString);
+        if (Pattern.matches(ACCOMPANIED_SERVICE, inputString)) {
+            return true;
+        } else {
+            System.out.println("Nhap Dung Dinh Dang Massage|Karaoke|Food|Drink|Car!!!!");
+            return false;
+        }
     }
 
     public static boolean checkCustomerName(String inputString) {
-        return Pattern.matches(CUSTOMER_NAME, inputString);
+        if (Pattern.matches(CUSTOMER_NAME, inputString)) {
+            return true;
+        }
+        else {
+            System.out.println("Can Nhap Dung Dinh Dang(VD:Pham Vu)!!!!");
+            return false;
+        }
     }
 
     public static boolean checkCustomerGender(String inputString) {
-        return Pattern.matches(CUSTOMER_GENDER, inputString);
+        if (Pattern.matches(CUSTOMER_GENDER, inputString)) {
+            return true;
+        } else {
+            System.out.println("Nhap Dung Dinh Dang male/female/unknown!!!!");
+            return false;
+        }
     }
 
     public static boolean checkCustomerBirthDay(String inputString) {
-        return Pattern.matches(CUSTOMER_BIRTHDAY, inputString);
+        if (Pattern.matches(CUSTOMER_BIRTHDAY, inputString)) {
+            return true;
+        } else {
+            System.out.println("Nhap Dung Dinh Dang Ngay Sinh dd/mm/yyyy!!");
+            return false;
+        }
     }
 
     public static boolean checkCustomerIdCard(String inputString) {
-        return Pattern.matches(CUSTOMER_ID_CARD, inputString);
+        if (Pattern.matches(CUSTOMER_ID_CARD, inputString)) {
+            return true;
+        } else {
+            System.out.println("Nhap Dung Dinh Dang Id Card");
+            return false;
+        }
     }
 
     public static boolean checkCustomerEmail(String inputString) {
-        return Pattern.matches(CUSTOMER_EMAIL, inputString);
+        if (Pattern.matches(CUSTOMER_EMAIL, inputString)) {
+            return true;
+        } else {
+            System.out.println("Nhap Dung Dinh Dang Email!!!!");
+            return false;
+        }
     }
 }
 

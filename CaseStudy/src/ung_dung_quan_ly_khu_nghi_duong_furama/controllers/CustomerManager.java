@@ -12,52 +12,39 @@ public class CustomerManager {
         Customer customer = new Customer();
 
         /* Set ID cho Object*/
-        customer.setId(GenericMethod.findMax("Customer",GenerateFile.getArray("Customer")) + 1);
+        customer.setId(GenericMethod.findMax("Customer", GenerateFile.getArray("Customer")) + 1);
 
         /*Input customer name*/
+        /**
+         * Check Loop
+         */
         System.out.println("Input Customer Name:");
-        String customerName;
-        while (true) {
-            customerName = GenericMethod.inputString() + " ";
-            if (Regex.checkCustomerName(customerName)) {
-                customerName = customerName.trim();
-                break;
-            } else System.out.println("Can Nhap Dung Dinh Dang(VD:Pham Vu)!!!!");
-        }
+        String customerName = addNewCustomer("CustomerName");
         customer.setName(customerName);
 
         /*Input customer birthday*/
+        /**
+         * Check Loop
+         */
         System.out.println("Input Customer BirthDay:");
-        String customerBirthDay;
-        while (true) {
-            customerBirthDay = GenericMethod.inputString();
-            if (Regex.checkCustomerBirthDay(customerBirthDay)) {
-                break;
-            } else System.out.println("Nhap Dung Dinh Dang Ngay Sinh dd/mm/yyyy!!");
-        }
+        String customerBirthDay = addNewCustomer("CustomerBirthDay");
+        ;
         customer.setBirthDay(customerBirthDay);
 
         /*Input customer gender*/
+        /**
+         * Check Loop
+         */
         System.out.println("Input Customer Gender:");
-        String customerGender;
-        while (true) {
-            customerGender = GenericMethod.inputString().toLowerCase().trim();
-            if (Regex.checkCustomerGender(customerGender)) {
-                customerGender = customerGender.substring(0, 1).toUpperCase() + customerGender.substring(1);
-                break;
-            } else System.out.println("Can Nhap Dung Dinh Dang(Male/Female/Unknown)!!!!");
-        }
+        String customerGender = addNewCustomer("CustomerGender");
         customer.setGender(customerGender);
 
         /*Input customer Id card*/
+        /**
+         * Check Loop
+         */
         System.out.println("Input Customer IdCard:");
-        String customerIdCard;
-        while (true) {
-            customerIdCard = GenericMethod.inputString();
-            if (Regex.checkCustomerIdCard(customerIdCard)) {
-                break;
-            } else System.out.println("CMND phai co 9 chu so!!!");
-        }
+        String customerIdCard = addNewCustomer("CustomerIdCard");
         customer.setIdCard(customerIdCard);
 
         /*Input customer phone number*/
@@ -66,15 +53,12 @@ public class CustomerManager {
         customer.setPhoneNumber(customerPhoneNumber);
 
         /*Input customer email*/
+        /**
+         * Check Loop
+         */
         System.out.println("Input Customer Email:");
-        String customerEmail;
-        while (true) {
-            customerEmail = GenericMethod.inputString();
-            if (Regex.checkCustomerEmail(customerEmail.toLowerCase().trim())) {
-                break;
-            } else System.out.println("Can Nhap Dung Dinh Dang EMail(VD:vusinger@gmail.com)!!!!");
-        }
-        customer.setEmail(customerEmail.trim());
+        String customerEmail = addNewCustomer("CustomerEmail");
+        customer.setEmail(customerEmail);
 
         /*Input customer type*/
         System.out.println("Input Customer Type:");
@@ -86,8 +70,29 @@ public class CustomerManager {
         String customerAddress = GenericMethod.inputString();
         customer.setAddress(customerAddress);
 
+        /**
+         * Save to file and array
+         */
         /*Save to file and array*/
-        GenericMethod.saveToArray(GenerateFile.getArray("Customer"),customer,"Customer");
-        GenericMethod.convertToFile("Customer",GenerateFile.getArray("Customer"));
+        GenericMethod.saveToArray(GenerateFile.getArray("Customer"), customer, "Customer");
+        GenericMethod.convertToFile("Customer", GenerateFile.getArray("Customer"));
+    }
+
+    private static String addNewCustomer(String name) {
+        String input;
+        boolean check = false;
+        while (true) {
+            input = GenericMethod.inputString().trim();
+            if ("CustomerName".equals(name)) check = Regex.checkCustomerName(input + " ");
+            if ("CustomerBirthDay".equals(name)) check = Regex.checkCustomerBirthDay(input);
+            if ("CustomerGender".equals(name)) {
+                check = Regex.checkCustomerGender(input.toLowerCase().trim());
+                if (check) return input.substring(0, 1).toUpperCase() + input.substring(1);
+            }
+            if ("CustomerIdCard".equals(name)) check = Regex.checkCustomerIdCard(input);
+            if ("CustomerEmail".equals(name)) check = Regex.checkCustomerEmail(input.toLowerCase());
+            if (check) break;
+        }
+        return input.trim();
     }
 }

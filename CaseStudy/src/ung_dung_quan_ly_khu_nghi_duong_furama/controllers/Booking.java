@@ -1,20 +1,20 @@
 package ung_dung_quan_ly_khu_nghi_duong_furama.controllers;
 
+import ung_dung_quan_ly_khu_nghi_duong_furama.common.FileSolution;
 import ung_dung_quan_ly_khu_nghi_duong_furama.common.GenerateFile;
 import ung_dung_quan_ly_khu_nghi_duong_furama.common.GenericMethod;
 import ung_dung_quan_ly_khu_nghi_duong_furama.models.Customer;
-import ung_dung_quan_ly_khu_nghi_duong_furama.common.FileSolution;
 import ung_dung_quan_ly_khu_nghi_duong_furama.models.Services;
 import ung_dung_quan_ly_khu_nghi_duong_furama.views.ShowManager;
 
 import java.util.List;
 
 public class Booking {
-//  ---------------------------------------------------------------------------
+    //  ---------------------------------------------------------------------------
 
     public static int addNewBooking() {
         System.out.println("--------------------- Booking Service ------------------------");
-        int idRent = 0, idCustomer = 0;
+        int idCustomer = 0;
         System.out.print("1. Booking Villa\n" +
                 "2. Booking House\n" +
                 "3. Booking Room\n" +
@@ -22,46 +22,38 @@ public class Booking {
                 "5. Exit\n");
         System.out.println("Choose:");
         int choose = GenericMethod.inputNumber();
-        if ((choose == 5) || (choose == 4)) {
-        } else {
-            ShowManager.showInformationCustomers();
-            System.out.println("Chon ID Customer:");
-            idCustomer = GenericMethod.inputNumber();
-        }
         switch (choose) {
             case 1:
-                ShowManager.showAll(GenerateFile.getArray("Villa"), "Villa");
-                System.out.println("Chon ID Villa:");
-                idRent = GenericMethod.inputNumber();
-                booking("Villa", idCustomer, idRent);
+                newBooking("Villa");
                 break;
             case 2:
-                ShowManager.showAll(GenerateFile.getArray("House"), "House");
-                System.out.println("Chon ID House:");
-                idRent = GenericMethod.inputNumber();
-                booking("House", idCustomer, idRent);
+                newBooking("House");
                 break;
             case 3:
-                ShowManager.showAll(GenerateFile.getArray("Room"), "Room");
-                System.out.println("Chon ID Room:");
-                idRent = GenericMethod.inputNumber();
-                booking("Room", idCustomer, idRent);
-                break;
-            case 4:
-            case 5:
+                newBooking("Room");
                 break;
         }
-        if ((choose == 5) || (choose == 4)) {
-        } else choose = addNewBooking();
+        if (choose != 4 && choose != 5) choose = addNewBooking();
         return choose;
     }
-//  ---------------------------------------------------------------------------
+
+    private static void newBooking(String name) {
+        ShowManager.showInformationCustomers();
+        System.out.println("Chon ID Customer:");
+        int idCustomer = GenericMethod.inputNumber();
+        ShowManager.showAll(GenerateFile.getArray(name), name);
+        System.out.println("Chon ID Villa:");
+        int idRent = GenericMethod.inputNumber();
+        booking(name, idCustomer, idRent);
+    }
+    //  ---------------------------------------------------------------------------
 
     /**
      * Booking luu vao customer array
-     * @param name Villa,House,Room
+     *
+     * @param name       Villa,House,Room
      * @param idCustomer : id customer
-     * @param idRent : id array building
+     * @param idRent     : id array building
      */
     private static void booking(String name, int idCustomer, int idRent) {
         List<Customer> customerArray = GenerateFile.getArray("Customer");
@@ -85,7 +77,6 @@ public class Booking {
         }
         return null;
     }
-//  ---------------------------------------------------------------------------
-
+    //  ---------------------------------------------------------------------------
 
 }
