@@ -5,7 +5,7 @@ import java.io.Serializable;
 public abstract class Services implements Serializable {
 
     private static final long serialVersionUID = 1L;
-    private int id;
+    private static int id;
     private String codeService;
     private String serviceName;
     private double useArea;
